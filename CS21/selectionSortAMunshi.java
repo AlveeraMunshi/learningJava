@@ -1,13 +1,13 @@
-package selectionSortAMunshi;
+package CS21;
 
-public class selectionSortAMunshi 
+public class selectionSortAMunshi
 {
 
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
 		int[] a = {5, 6, 7, 2, 4, 3, 0, -1};
 		selectionSort(a);
-		
+
 	}
 	
 	public static void selectionSort(int[] a)
@@ -25,7 +25,7 @@ public class selectionSortAMunshi
 			{
 				if (a[x]< a[start] && a[x]< a[index])
 				{
-	
+
 					index = x;
 				}
 			}

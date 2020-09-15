@@ -1,4 +1,4 @@
-package twoDArrayProgramsAMunshi;
+package CS21.files;
 
 public class twoDArrayProgramsAMunshi {
 
@@ -9,9 +9,9 @@ public class twoDArrayProgramsAMunshi {
 		int sum = 0;
 		int max = Integer.MIN_VALUE;
 		int min = Integer.MAX_VALUE;
-		for (int x = 0; x < 4; x++) 
+		for (int x = 0; x < 4; x++)
 		{
-			for (int y = 0; y < 6; y++) 
+			for (int y = 0; y < 6; y++)
 			{
 				a[x][y] = (int) (Math.random() * 71 + 7);
 				System.out.print(a[x][y] + "\t");
@@ -34,9 +34,9 @@ public class twoDArrayProgramsAMunshi {
 		String b[][] = new String[3][3];
 		String str = "*";
 		int ast = 0;
-		for (int x = 0; x < 3; x++) 
+		for (int x = 0; x < 3; x++)
 		{
-			for (int y = 0; y < 3; y++) 
+			for (int y = 0; y < 3; y++)
 			{
 				b[x][y] = str;
 				System.out.print(b[x][y] + "\t");
@@ -52,12 +52,12 @@ public class twoDArrayProgramsAMunshi {
 
 		// 3
 		int c[][] = new int[5][4];
-		for (int power = 2; power < 7; power++) 
+		for (int power = 2; power < 7; power++)
 		{
-			for (int base = 2; base < 6; base++) 
+			for (int base = 2; base < 6; base++)
 			{
 				int res = 1;
-				for (int j = power; j > 0; j--) 
+				for (int j = power; j > 0; j--)
 				{
 
 					res = res * base;
@@ -70,12 +70,12 @@ public class twoDArrayProgramsAMunshi {
 		}
 		System.out.println();
 		System.out.println();
-		
+
 		//1
 		int quiz[][] = new int [3][4];
-		for (int row = 0; row < quiz.length; row++) 
+		for (int row = 0; row < quiz.length; row++)
 		{
-			for (int col = 0; col < quiz[row].length; col++) 
+			for (int col = 0; col < quiz[row].length; col++)
 			{
 				quiz[row][col] = (int) (Math.random() * 37 + 21);
 				System.out.print(quiz[row][col] + "\t");
@@ -83,7 +83,7 @@ public class twoDArrayProgramsAMunshi {
 			}
 			System.out.println();
 		}
-		
+
 		sum = 0;
 		for (int col = 0; col < quiz[1].length; col++)
 		{

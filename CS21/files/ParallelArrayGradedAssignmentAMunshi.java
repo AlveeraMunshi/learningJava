@@ -1,11 +1,11 @@
-package parallelArrayGradedAssignmentAMunshi;
+package CS21.files;
 
 import java.util.Scanner;
 
-public class ParallelArrayGradedAssignmentAMunshi 
+public class ParallelArrayGradedAssignmentAMunshi
 {
 
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
 		Scanner reader = new Scanner (System.in);
 
@@ -25,7 +25,7 @@ public class ParallelArrayGradedAssignmentAMunshi
 		double recoveryrate[] = {Math.round(recoveries[0]/(double)numofcases[0]*10000)/100.0, Math.round(recoveries[1]/(double)numofcases[1]*10000)/100.0, Math.round(recoveries[2]/(double)numofcases[2]*10000)/100.0, Math.round(recoveries[3]/(double)numofcases[3]*10000)/100.0, Math.round(recoveries[4]/(double)numofcases[4]*10000)/100.0, Math.round(recoveries[5]/(double)numofcases[5]*10000)/100.0, Math.round(recoveries[6]/(double)numofcases[6]*10000)/100.0, Math.round(recoveries[7]/(double)numofcases[7]*10000)/100.0, Math.round(recoveries[8]/(double)numofcases[8]*10000)/100.0, Math.round(recoveries[9]/(double)numofcases[9]*10000)/100.0};
 		double infectionrate[] = {Math.round(numofcases[0]/(double)population[0]*10000)/100.0, Math.round(numofcases[1]/(double)population[1]*10000)/100.0, Math.round(numofcases[2]/(double)population[2]*10000)/100.0, Math.round(numofcases[3]/(double)population[3]*10000)/100.0, Math.round(numofcases[4]/(double)population[4]*10000)/100.0, Math.round(numofcases[5]/(double)population[5]*10000)/100.0, Math.round(numofcases[6]/(double)population[6]*10000)/100.0, Math.round(numofcases[7]/(double)population[7]*10000)/100.0, Math.round(numofcases[8]/(double)population[8]*10000)/100.0, Math.round(numofcases[9]/(double)population[9]*10000)/100.0};
 		char riskgrade[] = new char [10];
-		
+
 		// Determining Risk Grade
 		for (int x = 0; x < countries.length; x++)
 		{
@@ -62,7 +62,7 @@ public class ParallelArrayGradedAssignmentAMunshi
 		String country = "";
 		String stat = "";
 		int index = -1;
-		
+
 		// Enter a country
 		while (!country.equalsIgnoreCase("quit"))
 		{
@@ -89,18 +89,18 @@ public class ParallelArrayGradedAssignmentAMunshi
 					System.out.println("This response was invalid; try again.");
 				}
 			}
-			
+
 			// QUIT GAME
 			if (country.equalsIgnoreCase("quit"))
 			{
 				break;
 			}
-			
+
 			// Instructions
 			System.out.print("Which stat would you like? ");
 			stat = reader.nextLine();
 			System.out.println();
-			
+
 			// Bring stat
 			if (stat.equalsIgnoreCase("capital"))
 			{
@@ -142,7 +142,7 @@ public class ParallelArrayGradedAssignmentAMunshi
 			{
 				System.out.println("This response was invalid; try again.");
 			}
-			
+
 			// Prepare for loop
 			index = -1;
 			System.out.println();
@@ -152,4 +152,3 @@ public class ParallelArrayGradedAssignmentAMunshi
 	}
 
 }
-

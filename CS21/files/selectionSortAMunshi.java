@@ -1,4 +1,4 @@
-package CS21;
+package CS21.files;
 
 public class selectionSortAMunshi
 {
@@ -9,7 +9,7 @@ public class selectionSortAMunshi
 		selectionSort(a);
 
 	}
-	
+
 	public static void selectionSort(int[] a)
 	{
 		for (int x = 0; x < a.length; x++)

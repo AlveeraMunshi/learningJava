@@ -2,9 +2,9 @@ package APCSA.files;
 
 import java.util.Scanner;
 
-public class ArrayPractices
+public class ArrayPractice1
 {
-	public ArrayPractices()
+	public ArrayPractice1()
 	{
 		Scanner reader = new Scanner(System.in);
 		System.out.print("Enter array length/width: ");
@@ -52,6 +52,6 @@ public class ArrayPractices
 
 	public static void main(String[] args)
 	{
-		ArrayPractices app = new ArrayPractices();
+		ArrayPractice1 app = new ArrayPractice1();
   }
 }

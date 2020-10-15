@@ -1,4 +1,4 @@
-package APCSA.files;
+package APCSA.MathnMethods.files;
 
 class DiceSimulation {
   public DiceSimulation()

@@ -1,4 +1,4 @@
-package APCSA.files;
+package APCSA.MathnMethods.files;
 
 public class Lantern
 {

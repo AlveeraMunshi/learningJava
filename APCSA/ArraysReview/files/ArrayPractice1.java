@@ -1,4 +1,4 @@
-package APCSA.files;
+package APCSA.ArraysReview.files;
 
 import java.util.Scanner;
 

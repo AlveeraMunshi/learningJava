@@ -34,4 +34,7 @@ public class Author
 	{
 		return "Author[name="+name+",email="+email+",gender="+gender+"]";
 	}
+  public static void main (String[]args)
+  {
+  }
 }

@@ -25,7 +25,7 @@ public class AnimalClinic
     breed = initBreed;
   }
   // Accessors (Get Methods)
-  public String getName()// Accessors (Get Methods)
+  public String getName()
 	{
 		return name;
 	}
@@ -69,4 +69,7 @@ public class AnimalClinic
 	{
 		return name+" "+age+" "+weight+" "+type+" "+breed;
 	}
+  public static void main (String[]args)
+  {
+  }
 }

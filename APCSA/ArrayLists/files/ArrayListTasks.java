@@ -28,7 +28,7 @@ public class ArrayListTasks
       }
       System.out.println(list);
       //5
-      for (int x = 0; x < list.size(); x++)
+      for (int x = list.size()-1; x > 0; x--)
       {
         if (x%2 == 1)
           list.remove(x);
@@ -63,9 +63,9 @@ public class ArrayListTasks
       }
       System.out.println(list);
       //10
-      for (int x = 0; x < list.size(); x++)
+      for (int x = list.size()-1; x > 0; x--)
       {
-        if (x%2 == 0)
+        if (x%2 == 1)
           list.remove(x);
       }
       System.out.println(list);

@@ -1,6 +1,6 @@
 package APCSA.Objects.files;
 
-public class TestAuthor
+public class testAuthor
 {
   public static void main (String[]args)
   {

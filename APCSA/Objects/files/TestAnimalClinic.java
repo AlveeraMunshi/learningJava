@@ -1,6 +1,6 @@
 package APCSA.Objects.files;
 
-public class TestAnimalClinic
+public class testAnimalClinic
 {
   public static void main (String[]args)
   {

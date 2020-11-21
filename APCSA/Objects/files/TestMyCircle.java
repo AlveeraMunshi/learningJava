@@ -2,7 +2,7 @@ package APCSA.Objects.files;
 
 import java.lang.Math;
 
-public class TestMyCircle
+public class testMyCircle
 {
   public static void main (String[]args)
   {

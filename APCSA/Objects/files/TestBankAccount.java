@@ -1,6 +1,6 @@
 package APCSA.Objects.files;
 
-public class TestBankAccount
+public class testBankAccount
 {
   public static void main (String[]args)
   {

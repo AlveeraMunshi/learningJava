@@ -22,13 +22,13 @@ public class Fraction
   }
   public void addFraction(Fraction other)
 	{
-		Fraction newFract = FractionMath.add(this,other);// in this case, "this" refers to the current object
+		Fraction newFract = FractionMath.add(this,other);
 		this.numerator = newFract.numerator;
 		this.denominator =  newFract.denominator;
 	}
 	public void multiplyFraction(Fraction other)
 	{
-		Fraction newFract = FractionMath.multiply(this,other); // in this case, "this" refers to the current object
+		Fraction newFract = FractionMath.multiply(this,other);
 		this.numerator = newFract.numerator;
 		this.denominator = newFract.denominator;
 	}

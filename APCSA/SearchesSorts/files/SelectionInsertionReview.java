@@ -41,6 +41,7 @@ public class SelectionInsertionReview
       {
         list2.set(possibleIndex+1, list2.get(possibleIndex));
         possibleIndex--;
+
       }
       list2.set(possibleIndex+1, temp);
     }

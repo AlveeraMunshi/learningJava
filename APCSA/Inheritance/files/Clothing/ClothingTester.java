@@ -1,4 +1,4 @@
-package APCSA.Inheritance.files;
+package APCSA.Inheritance.files.Clothing;
 
 class ClothingTester{
 	public static void main (String[]args)

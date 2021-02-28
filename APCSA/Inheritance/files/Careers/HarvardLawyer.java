@@ -1,4 +1,4 @@
-package APCSA.Inheritance.files;
+package APCSA.Inheritance.files.Careers;
 
 /** HarvardLawyer.java
  * A class to represent Lawyers */

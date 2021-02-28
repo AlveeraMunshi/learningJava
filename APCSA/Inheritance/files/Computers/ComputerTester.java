@@ -1,10 +1,10 @@
-package APCSA.Inheritance.files;
+package APCSA.Inheritance.files.Computers;
 
 public class ComputerTester{
    public static void main(String[] args){
        Laptop macBook = new Laptop();
        macBook.setBatteryLife(8.5);
-       
+
        Desktop dell = new Desktop();
        dell.setScreenSize(18);
 

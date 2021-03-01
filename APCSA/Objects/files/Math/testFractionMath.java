@@ -1,4 +1,4 @@
-package APCSA.Objects.files;
+package APCSA.Objects.files.Math;
 
 public class testFractionMath
 {

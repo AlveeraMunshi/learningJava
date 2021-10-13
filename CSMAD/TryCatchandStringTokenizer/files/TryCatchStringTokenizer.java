@@ -1,10 +1,12 @@
+package CSMAD.TryCatchandStringTokenizer.files;
+
 import java.util.*;
 
 public class TryCatchStringTokenizer
 {
 	public TryCatchStringTokenizer()
 	{
-		String s = "Yusha Yusuf's a dummy. Aloe is an idiot. Mysh is a wannabe drug addict. Sushi has not slept. Naan is mad at the world.";
+		String s = "Yusha Yusuf's a dummy. Aloe is an idiot. Mysh is a clown. Sushi has not slept. Naan is mad at the world.";
 		StringTokenizer st1 = new StringTokenizer(s, ".,?!';", false);
 		System.out.println(st1.countTokens()); //counts tokens that are punctation
 		StringTokenizer st2 = new StringTokenizer(s, ".", false);
@@ -72,4 +74,3 @@ public class TryCatchStringTokenizer
 		TryCatchStringTokenizer runner = new TryCatchStringTokenizer();
 	}
 }
-

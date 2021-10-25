@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="25dp"
-    android:layout_marginTop="15dp"
-    android:layout_marginRight="25dp"
+    android:layout_height="match_parent"
+    android:background="@drawable/backdrop"
+    android:paddingLeft="25dp"
+    android:paddingTop="15dp"
+    android:paddingRight="25dp"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -25,8 +26,54 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:layout_marginTop="35dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:onClick="sin"
+                android:background="@drawable/custom_button"
+                android:text="sin" />
+
+            <Button
+                android:id="@+id/button22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:onClick="cos"
+                android:background="@drawable/custom_button"
+                android:text="cos" />
+
+            <Button
+                android:id="@+id/button23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:onClick="tan"
+                android:background="@drawable/custom_button"
+                android:text="tan" />
+
+            <Button
+                android:id="@+id/button24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="sqrt"
+                android:background="@drawable/custom_button"
+                android:text="√" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
             <Button
@@ -64,9 +111,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="+"
-                android:onClick="add"
                 android:background="@drawable/custom_button"
+                android:onClick="add"
+                android:text="+"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -112,9 +159,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="-"
-                android:onClick="minus"
                 android:background="@drawable/custom_button"
+                android:onClick="minus"
+                android:text="-"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -161,9 +208,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="*"
-                android:onClick="times"
                 android:background="@drawable/custom_button"
+                android:onClick="times"
+                android:text="*"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -209,9 +256,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="/"
-                android:onClick="divide"
                 android:background="@drawable/custom_button"
+                android:onClick="divide"
+                android:text="/"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -231,6 +278,16 @@
                 android:onClick="clear"
                 android:text="C"
                 android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/button20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="exponent"
+                android:text="^" />
 
             <Button
                 android:id="@+id/button18"
@@ -281,7 +338,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Block: 1B" />
+
         </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

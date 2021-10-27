@@ -330,7 +330,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         for (int x = min; x < max; x++) {
             String element = equationParts.get(x);
-            if ((min == 0 || equationParts.get(x-1).equals("(")) && element.equals("-")) {
+            if ((x == 0 || equationParts.get(x-1).equals("(")) && element.equals("-")) {
                 String connect = equationParts.get(x) + equationParts.get(x+1);
                 simplify1(equationParts, x, Double.parseDouble(connect));
                 x--;

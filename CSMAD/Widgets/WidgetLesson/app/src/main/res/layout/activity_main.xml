@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginRight="29dp"
+        android:layout_marginLeft="29dp"
+        android:text="Switch" />
+
+    <TextView
+        android:id="@+id/textViewSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/switch1"
+        android:layout_alignParentEnd="true"
+        android:text="Status" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_above="@id/seekBar"
+        android:layout_alignStart="@id/seekBar"
+        android:layout_marginBottom="38dp"
+        android:inputType="textPassword" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="100dp"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textViewSeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/seekBar"
+        android:layout_alignEnd="@id/textViewSwitch"
+        android:text="Status" />
+
+    <TextView
+        android:id="@+id/textViewEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/editText"
+        android:layout_alignBottom="@id/editText"
+        android:layout_alignEnd="@id/textViewSeek"
+        android:text="Show Text" />
+
+</RelativeLayout>

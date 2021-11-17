@@ -1,8 +1,8 @@
 # learningJava
 Random HS programs
 
-Hey! This is Alveera Munshi, and this repo is full of my programs from highschool courses APCSA and CS21.
-All problems were gotten from Ms. Melissa Burdge for CS21 and Ms. Alexandria Robles for APCSA. These are simply my solutions to the given prompts.
+Hey! This is Alveera Munshi, and this repo is full of my programs from highschool courses Mobile App Development (CSMAD), AP Computer Science A (APCSA), and Computer Science in the 21st Century (CS21).
+All problems were gotten from Ms. Melissa Burdge for CS21 and Ms. Alexandria Robles for APCSA and CSMAD. These are simply my solutions to the given prompts.
 
 If you are a student from my school, SBHS, please do not use the following programs to cheat. 
 I have them on this repo so that I can store my files between devices if necessary and also because I like feeling accountable for my work.

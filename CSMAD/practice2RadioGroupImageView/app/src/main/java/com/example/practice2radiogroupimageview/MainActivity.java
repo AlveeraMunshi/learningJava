@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,12 +37,29 @@ public class MainActivity extends AppCompatActivity {
         scoreDisplay = findViewById(R.id.score);
         CPU = findViewById(R.id.CPU);
         score = 0;
+        rgVolume.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.v100:
+                       Toast.makeText(MainActivity.this, "WARNING: High volume can damage hearing", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rgSelection.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                if (!rock.isChecked() && !paper.isChecked() && !scissor.isChecked())
+                    selection.setText("Make a selection");
+            }
+        });
+        rgSelection.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+                play.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                    public void onClick(View view) {
                         int rand = (int)(Math.random()*3+1);
                         String compMove = "";
                         switch (rand)
@@ -66,22 +84,30 @@ public class MainActivity extends AppCompatActivity {
                                     selection.setText("You win!");
                                     score++;
                                 }
+                                else
+                                    selection.setText("You lose!");
+                                break;
                             case R.id.paper:
                                 if (userWin("paper", compMove)) {
                                     selection.setText("You win!");
                                     score++;
                                 }
+                                else
+                                    selection.setText("You lose!");
+                                break;
                             case R.id.scissor:
                                 if (userWin("scissor", compMove)) {
                                     selection.setText("You win!");
                                     score++;
                                 }
-                            default:
-                                selection.setText("Make a selection");
+                                else
+                                    selection.setText("You lose!");
+                                break;
                         }
-
+                        scoreDisplay.setText("Score: " + score);
                     }
                 });
+
             }
         });
     }

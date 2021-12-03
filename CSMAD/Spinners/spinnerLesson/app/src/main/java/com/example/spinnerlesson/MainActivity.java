@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         selection = findViewById(R.id.textView);
 
-        list = new Array<String>();
+        list = new ArrayList<String>();
         list.add("Jim");
         list.add("John");
         list.add("Jen");
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("Jimmy");
         list.add("Jack");
 
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, list);
         spinner.setAdapter(spinnerAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

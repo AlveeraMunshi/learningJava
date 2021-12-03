@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                entered.add(name);
+                entered.add(sp + " " + name);
             }
         });
 

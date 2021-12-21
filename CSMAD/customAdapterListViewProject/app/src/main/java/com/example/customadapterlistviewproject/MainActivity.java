@@ -25,13 +25,19 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ListView lv;
+    ArrayList<Song> playlist = new ArrayList<Song>();
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList("key", playlist);
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lv = findViewById(R.id.lv);
-        ArrayList<Song> playlist = new ArrayList<Song>();
         Song ntk = new Song("Need To Know", "Doja Cat", 3*60+31, "Dance Pop", 1, R.drawable.planether);
         Song iwbys = new Song("I Wanna Be Your Slave", "Maneskin", 2*60+52, "Rock Pop", 2, R.drawable.teatrodia);
         Song beg = new Song("Begging", "Maneskin", 3*60+32, "Rock Pop", 3, R.drawable.planether);
@@ -48,16 +54,28 @@ public class MainActivity extends AppCompatActivity {
         Song juli = new Song("Juliet", "Cavetown", 4*60+38, "Dance Pop", 14, R.drawable.planether);
         Song tttm = new Song("Talking to The Moon", "Bruno Mars", 3*60+37, "Dance Pop", 15, R.drawable.planether);
 
+        if(savedInstanceState == null || !savedInstanceState.containsKey("key")) {
+            playlist.add(ntk);
+            playlist.add(iwbys);
+            playlist.add(beg);
+            playlist.add(iwby);
+            playlist.add(lid);
+            playlist.add(fof);
+            playlist.add(shiv);
+            playlist.add(dand);
+            playlist.add(ilys);
+            playlist.add(jen);
+            playlist.add(noth);
+            playlist.add(perf);
+            playlist.add(fool);
+            playlist.add(juli);
+            playlist.add(tttm);
+        }
+        else
+        {
+            playlist = savedInstanceState.getParcelableArrayList("key");
+        }
 
-        playlist.add(ntk);
-        playlist.add(iwbys);
-        playlist.add(beg);
-        playlist.add(iwby);
-        playlist.add(lid);
-        playlist.add(fof);
-        playlist.add(shiv);
-        playlist.add(dand);
-        playlist.add(ilys);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
         {
             CustomAdapterP adapter = new CustomAdapterP(this, R.layout.portrait_adapter_layout, playlist);
@@ -166,24 +184,5 @@ public class MainActivity extends AppCompatActivity {
             return adapterLayout;
         }
 
-    }
-    public class CustomSpinnerAdapter extends ArrayAdapter<Song>
-    {
-        List<Song> list;
-        Context context;
-        int xmlResource;
-        public CustomSpinnerAdapter(@NonNull Context context, int resource, @NonNull List<Song> objects)
-        {
-            super(context, resource, objects);
-            xmlResource = resource;
-            list = objects;
-            this.context = context;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
-        {
-        }
     }
 }

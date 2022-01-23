@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0af89cd1-5a57-46ff-82f4-25996807111e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/JSONDemo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Widgets/WidgetPractice/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Widgets/WidgetPractice/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Widgets/WidgetPractice/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../contextLesson/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/java/com/example/customadapterlistviewproject/CustomAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/chosen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/fof.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/fool.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/ilys.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/iwby.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/jenny.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/juliet.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/lid.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/nothing.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/perf1d.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/safehaven.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/shivers.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/drawable/tttm.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/layout-land/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/beg.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/dand.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/fof.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/fool.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/ilys.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/iwby.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/iwbys.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/jenny.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/juli.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/lid.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/noth.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/ntk.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/perf.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/shiv.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/raw/tttm.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lifeCycleDemo/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../orientationPractice/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Widgets/WidgetPractice/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Widgets/WidgetPractice/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Widgets/WidgetPractice/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Widgets/WidgetPractice/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Widgets/WidgetPractice/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../contextLesson/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../contextLesson/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customAdapterListViewProject/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../customAdapterListViewProject/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/java/com/example/customadapterlistviewproject/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/java/com/example/customadapterlistviewproject/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/java/com/example/customadapterlistviewproject/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/java/com/example/customadapterlistviewproject/Song.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/layout/landscape_adapter_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/layout/landscape_adapter_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/layout/portrait_adapter_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../customAdapterListViewProject/app/src/main/res/layout/portrait_adapter_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../orientationPractice/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../orientationPractice/.idea/gradle.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
+  <component name="ProjectId" id="23VXcRjTmuNmANVURhBSAp3M8u4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0af89cd1-5a57-46ff-82f4-25996807111e" name="Default Changelist" comment="" />
+      <created>1641819654871</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1641819654871</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

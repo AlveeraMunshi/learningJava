@@ -8,6 +8,12 @@
         <entry key="..\:/Users/10016836/AndroidStudioProjects/customAdapterListViewProject/app/src/main/res/layout/landscape_adapter_layout.xml" value="0.13677811550151975" />
         <entry key="..\:/Users/10016836/AndroidStudioProjects/customAdapterListViewProject/app/src/main/res/layout/portrait_adapter_layout.xml" value="0.33" />
         <entry key="..\:/Users/10016836/AndroidStudioProjects/customAdapterListViewProject/app/src/main/res/layout/spinner_item.xml" value="0.1484375" />
+        <entry key="app/src/main/res/drawable/backdrop.xml" value="0.13645833333333332" />
+        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.2019400352733686" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/landscape_adapter_layout.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/portrait_adapter_layout.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/spinner_item.xml" value="0.1203125" />
       </map>
     </option>
   </component>

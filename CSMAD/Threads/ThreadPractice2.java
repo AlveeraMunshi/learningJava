@@ -6,7 +6,7 @@ public class ThreadPractice2
   {
     Thread t1 = new Thread("Thread: "){
       public void run(){
-        
+
         for (int i = 1; i<=100; i++)
         {
           System.out.println(getName()+" "+i);

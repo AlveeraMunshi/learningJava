@@ -1,0 +1,8 @@
+-encoding
+UTF-8
+-Xlint
+-sourcepath
+/Users/alveeramunshi/Documents/GitHub/learningJava
+-d
+/var/folders/_7/jpxx2yks58sdsh284rkl20wc0000gn/T/atom_script_tempfiles/jar-2022211-49282-10vrsyj.smpq
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSMAD/Threads/ThreadSafetyExample.java

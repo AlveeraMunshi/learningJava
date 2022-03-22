@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/seabackground"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="166dp"
+        android:text="Hello World!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/s1"
+        android:layout_width="103dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/squiddy" />
+
+    <ImageView
+        android:id="@+id/s2"
+        android:layout_width="103dp"
+        android:layout_height="89dp"
+        android:layout_marginStart="128dp"
+        app:layout_constraintStart_toEndOf="@+id/s5"
+        app:srcCompat="@drawable/squiddy"
+        tools:layout_editor_absoluteY="165dp" />
+
+    <ImageView
+        android:id="@+id/s3"
+        android:layout_width="103dp"
+        android:layout_height="89dp"
+        app:srcCompat="@drawable/squiddy"
+        tools:layout_editor_absoluteX="196dp"
+        tools:layout_editor_absoluteY="289dp" />
+
+    <ImageView
+        android:id="@+id/s4"
+        android:layout_width="103dp"
+        android:layout_height="89dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/squiddy"
+        tools:layout_editor_absoluteY="403dp" />
+
+    <ImageView
+        android:id="@+id/s5"
+        android:layout_width="103dp"
+        android:layout_height="89dp"
+        app:layout_constraintTop_toBottomOf="@+id/s1"
+        app:srcCompat="@drawable/squiddy"
+        tools:layout_editor_absoluteX="29dp" />
+
+    <ImageView
+        android:id="@+id/s6"
+        android:layout_width="103dp"
+        android:layout_height="89dp"
+        app:srcCompat="@drawable/squiddy"
+        tools:layout_editor_absoluteX="271dp"
+        tools:layout_editor_absoluteY="465dp" />
+
+    <ImageView
+        android:id="@+id/s7"
+        android:layout_width="103dp"
+        android:layout_height="89dp"
+        app:srcCompat="@drawable/squiddy"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="289dp" />
+
+    <ImageView
+        android:id="@+id/s8"
+        android:layout_width="103dp"
+        android:layout_height="89dp"
+        app:srcCompat="@drawable/squiddy"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="452dp" />
+
+    <ImageView
+        android:id="@+id/s9"
+        android:layout_width="103dp"
+        android:layout_height="89dp"
+        app:srcCompat="@drawable/squiddy"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="624dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

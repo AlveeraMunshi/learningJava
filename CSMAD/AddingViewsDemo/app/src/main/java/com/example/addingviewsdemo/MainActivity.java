@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         //Programmatic Image
         iv = new ImageView(this);
         iv.setId(View.generateViewId());
-        iv.setImageResource();
+        iv.setImageResource(R.drawable.aloe);
 
 
 
@@ -47,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
         cs.clone(l);
 
         //bind new widgets to other things in layout
-        cs.connect(t.getId(), ConstraintSet.TOP, l.getId(), ConstraintSet.TOP);
-        cs.connect(t.getId(), ConstraintSet.BOTTOM, l.getId(), ConstraintSet.BOTTOM);
-        cs.connect(t.getId(), ConstraintSet.LEFT, l.getId(), ConstraintSet.LEFT);
-        cs.connect(t.getId(), ConstraintSet.RIGHT, l.getId(), ConstraintSet.RIGHT);
-        cs.setVerticalBias(t.getId(), .2f);
-        cs.setHorizontalBias(t.getId(), .5f);
+        //cs.connect(t.getId(), ConstraintSet.TOP, l.getId(), ConstraintSet.TOP);
+        //cs.connect(t.getId(), ConstraintSet.BOTTOM, l.getId(), ConstraintSet.BOTTOM);
+        //cs.connect(t.getId(), ConstraintSet.LEFT, l.getId(), ConstraintSet.LEFT);
+        //cs.connect(t.getId(), ConstraintSet.RIGHT, l.getId(), ConstraintSet.RIGHT);
+        //cs.setVerticalBias(t.getId(), .2f);
+       // cs.setHorizontalBias(t.getId(), .5f);
 
         cs.connect(iv.getId(), ConstraintSet.TOP, l.getId(), ConstraintSet.TOP);
         cs.connect(iv.getId(), ConstraintSet.BOTTOM, l.getId(), ConstraintSet.BOTTOM);

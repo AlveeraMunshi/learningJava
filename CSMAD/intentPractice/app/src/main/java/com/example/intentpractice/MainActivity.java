@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == NUMBER_CODE && resultCode == RESULT_OK)
         {
-            nameDisplay.setText(data.getStringExtra("username"));
+            //nameDisplay.setText(data.getStringExtra("username"));
         }
 
     }

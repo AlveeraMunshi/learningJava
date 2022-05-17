@@ -39,7 +39,7 @@ public class NumberActivity extends AppCompatActivity {
                 callFirstActivity(view);
             }
         });
-    }
+    }3
 
     public void callFirstActivity(View view)
     {

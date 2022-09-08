@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blueair">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/direct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter a city:  "
+                android:textSize="20dp"
+                android:fontFamily="@font/glacialindifference"
+                android:textColor="@color/maderayellow"/>
+
+            <EditText
+                android:id="@+id/cityinput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:maxWidth="100dp"
+                android:maxHeight="100dp"
+                android:fontFamily="@font/glacialindifference"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="30dp"
+            android:text="Find"
+            android:fontFamily="@font/glacialindifference"
+            android:background="@color/teal_700"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/drone1"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/gyro"/>
+
+        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cw2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:elevation="20dp"
+            android:padding="50dp"
+            android:layout_marginTop="60dp"
+            card_view:cardBackgroundColor="#BBDCEF"
+            card_view:cardCornerRadius="20dp"
+            card_view:cardElevation="10dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/cityDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_margin="20dp"
+                    android:textSize="20dp"
+                    android:text="City: "
+                    android:fontFamily="@font/glacialindifference"
+                    android:textColor="@color/maderayellow"/>
+
+                <TextView
+                    android:id="@+id/aqiDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:textSize="20dp"
+                    android:text="AQI: "
+                    android:fontFamily="@font/glacialindifference"
+                    android:textColor="@color/maderayellow"/>
+
+                <TextView
+                    android:id="@+id/o3Display"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="20dp"
+                    android:text="O3: "
+                    android:fontFamily="@font/glacialindifference"
+                    android:textColor="@color/maderayellow"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

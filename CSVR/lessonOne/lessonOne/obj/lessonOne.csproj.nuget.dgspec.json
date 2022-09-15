@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/ConsoleApp1/ConsoleApp1/ConsoleApp1.csproj": {}
+    "/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/lessonOne.csproj": {}
   },
   "projects": {
-    "/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/ConsoleApp1/ConsoleApp1/ConsoleApp1.csproj": {
+    "/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/lessonOne.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/ConsoleApp1/ConsoleApp1/ConsoleApp1.csproj",
-        "projectName": "ConsoleApp1",
-        "projectPath": "/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/ConsoleApp1/ConsoleApp1/ConsoleApp1.csproj",
+        "projectUniqueName": "/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/lessonOne.csproj",
+        "projectName": "lessonOne",
+        "projectPath": "/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/lessonOne.csproj",
         "packagesPath": "/Users/alveeramunshi/.nuget/packages/",
-        "outputPath": "/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/ConsoleApp1/ConsoleApp1/obj/",
+        "outputPath": "/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alveeramunshi/.nuget/NuGet/NuGet.Config"

@@ -12,11 +12,11 @@ public class Matrix {
             String text;
             while ((text = reader.readLine()) != null)
             {
-                String[] matrixes = text.split("\t");
-                String matrix1 = matrixes[0].substring(1, matrixes[0].length()-1);
-                String matrix2 = matrixes[1].substring(1, matrixes[1].length()-1);
-                String[] m1 = matrix1.split(",");
-                String[] m2 = matrix2.split(",");
+                String[] matrixes = text.split("\t"); //{{1,2},{3,4}} {{4,5},{6,7}}
+                String matrix1 = matrixes[0].substring(1, matrixes[0].length()-1); //{1,2},{3,4}
+                String matrix2 = matrixes[1].substring(1, matrixes[1].length()-1); //{4,5},{6,7}
+                String[] m1 = matrix1.split(","); //{1,2} {3,4}
+                String[] m2 = matrix2.split(","); //{4,5} {6,7}
                 for (int x = 0; x < matrix1.length(); x++)
                 {
                     String currentterm = 

@@ -1,0 +1,15 @@
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/obj/Debug/net6.0/lessonOne.csproj.AssemblyReference.cache
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/obj/Debug/net6.0/lessonOne.GeneratedMSBuildEditorConfig.editorconfig
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/obj/Debug/net6.0/lessonOne.AssemblyInfoInputs.cache
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/obj/Debug/net6.0/lessonOne.AssemblyInfo.cs
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/obj/Debug/net6.0/lessonOne.csproj.CoreCompileInputs.cache
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/bin/Debug/net6.0/lessonOne
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/bin/Debug/net6.0/lessonOne.deps.json
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/bin/Debug/net6.0/lessonOne.runtimeconfig.json
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/bin/Debug/net6.0/lessonOne.dll
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/bin/Debug/net6.0/lessonOne.pdb
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/obj/Debug/net6.0/lessonOne.dll
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/obj/Debug/net6.0/refint/lessonOne.dll
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/obj/Debug/net6.0/lessonOne.pdb
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/obj/Debug/net6.0/lessonOne.genruntimeconfig.cache
+/Users/alveeramunshi/Documents/GitHub/learningJava/CSVR/lessonOne/lessonOne/obj/Debug/net6.0/ref/lessonOne.dll

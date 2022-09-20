@@ -16,23 +16,25 @@ public class Reducer {
                 String[] pieces = text.split("/");
                 int num = Integer.parseInt(pieces[0]);
                 int denom = Integer.parseInt(pieces[1]);
+                int whole = num/denom;
                 int remainder = num%denom;
+                //System.out.println("Whole: " + whole + "Remainder: " + remainder);
+                System.out.print(num + " / " + denom + " = ");
                 ArrayList<Integer> cf = new ArrayList<>();
                 for (int x = 1; x <= remainder; x++)
                 {
-                    if (denom%x == 0)
+                    if (denom%x == 0 && remainder%x == 0)
                         cf.add(x);
                 }
                 remainder = remainder/cf.get(cf.size()-1);
                 denom = denom/cf.get(cf.size()-1);
-                if (num < denom)
+                if (whole == 0)
                 {
-                    System.out.println(num + " / " + denom + " = " + remainder + "/" + denom);
+                    System.out.println(remainder + "/" + denom);
                 }
                 else
                 {
-                    int whole = (num - remainder)/denom;
-                    System.out.println(num + " / " + denom + " = " + whole + " " + remainder + "/" + denom);
+                    System.out.println(whole + " " + remainder + "/" + denom);
                 }
             }
         } catch (Exception e) {

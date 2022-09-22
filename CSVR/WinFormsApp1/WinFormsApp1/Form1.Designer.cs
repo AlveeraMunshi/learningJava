@@ -72,7 +72,7 @@
             // 
             this.milliseconds.AutoSize = true;
             this.milliseconds.Checked = true;
-            this.milliseconds.Location = new System.Drawing.Point(289, 192);
+            this.milliseconds.Location = new System.Drawing.Point(293, 192);
             this.milliseconds.Name = "milliseconds";
             this.milliseconds.Size = new System.Drawing.Size(91, 19);
             this.milliseconds.TabIndex = 3;

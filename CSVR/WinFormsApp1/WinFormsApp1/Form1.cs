@@ -27,25 +27,31 @@ namespace WinFormsApp1
             {
                 started = false;
                 stopWatch.Stop();
-                String elapsedmillis = stopWatch.ElapsedMilliseconds.ToString();
-                if (seconds.isC)
-                label1.Text = stopWatch.ElapsedMilliseconds.ToString() + " millisec";
+                long elapsedmillis = stopWatch.ElapsedMilliseconds;
+                long elapsedsecs = elapsedmillis / 1000;
+                if (milliseconds.Checked)
+                    label1.Text = elapsedmillis.ToString() + " milliseconds have passed";
+                else if (seconds.Checked)
+                    label1.Text = elapsedsecs.ToString() + " seconds have passed";
             }
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-            if (e == )
+            
         }
 
         private void seconds_CheckedChanged(object sender, EventArgs e)
         {
+            if (seconds.Checked)
+                milliseconds.Checked = false;
 
         }
 
         private void milliseconds_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (milliseconds.Checked)
+                seconds.Checked = false;
         }
     }
 }

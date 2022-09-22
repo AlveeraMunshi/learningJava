@@ -86,15 +86,19 @@ namespace SampleNamespace
             subjects.Add("Data Structures", "Mr. Stephen Dentler");
             subjects.Add("Virtual Reality", "Mr. Steven Trainor");
             subjects.Add("Physical Education", "Ms. Alexandria Bravo");
+            List<string> msa = new List<string>();
             foreach (KeyValuePair<string, string> entry in subjects)
             {
                 string key = entry.Key;
+                Console.WriteLine(entry);
                 if (key.Equals("Math") || key.Equals("Science") || key.Equals("Art"))
                 {
-                    Console.WriteLine(entry);
+                    msa.Add(entry.Value);
                 }
             }
-
+            Console.WriteLine("\nMath Science and Art Teachers: ");
+            foreach (string teacher in msa)
+                Console.WriteLine(teacher );
         }
         static List<int> createList()
         {

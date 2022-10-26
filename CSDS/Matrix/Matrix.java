@@ -39,14 +39,55 @@ public class Matrix {
                         b2[x][y] = row[y];
                     }
                 }
+                int[][] addition = new int[b1.length][bl];
+                addsub(a2, b2, "A", addition);
+                int[][] subtraction = new int[b1.length][bl];
+                addsub(a2, b2, "S", subtraction);
+                int[][] product = new int[a2.length][b2[0].length];
+                product(a2, b2, product);
             }
         } catch (IOException e) {
             // TODO: handle exception
         }
     }
-    public void addsub(String[][] m1, String[][] m2, String letter)
+    public void addsub(String[][] m1, String[][] m2, String letter, int[][] ans)
     {
-        if (m1.length != m2.length && m1[0].length != m2.length)
+        if (m1.length == m2.length && m1[0].length == m2[0].length)
+        {
+            for (int x = 0; x < m1.length; x++)
+            {
+                for (int y = 0; y < m1[0].length; y++)
+                {
+                    if (letter.equalsIgnoreCase("A"))
+                    {
+                        ans[x][y] = Integer.parseInt(m1[x][y]) + Integer.parseInt(m2[x][y]);
+                    }
+                    else
+                    {
+                        ans[x][y] = Integer.parseInt(m1[x][y]) - Integer.parseInt(m2[x][y]);
+                    }
+                    System.out.print(ans[x][y] + " ");
+                }
+                System.out.println();
+            }
+            System.out.println();
+        }
+        else
+        {
+            System.out.println("Canot conduct function");
+        }
+    }
+    public void product(String[][] m1, String[][] m2, int[][] ans)
+    {
+        for (int x1 = 0; x1 < m1.length; x1++) {
+            for (int y2 = 0; y2 < m2[0].length; y2++) {
+                ans[x1][y2] = 0;
+                for (int x2 = 0; x2 < m2.length; x2++)
+                    ans[x1][y2] += Integer.parseInt(m1[x1][x2]) * Integer.parseInt(m2[x2][y2]);
+                System.out.print(ans[x1][y2] + " ");
+            }
+            System.out.println("");
+        }
     }
     public static void main(String[]args)
     {

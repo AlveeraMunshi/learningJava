@@ -10,36 +10,68 @@ public class Reducer {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String text;
-            System.out.println(reader.readLine());
             while ((text = reader.readLine()) != null)
             {
+                //get fraction
                 String[] pieces = text.split("/");
                 int num = Integer.parseInt(pieces[0]);
                 int denom = Integer.parseInt(pieces[1]);
-                int whole = num/denom;
-                int remainder = num%denom;
-                //System.out.println("Whole: " + whole + "Remainder: " + remainder);
-                System.out.print(num + " / " + denom + " = ");
-                ArrayList<Integer> cf = new ArrayList<>();
-                for (int x = 1; x <= remainder; x++)
-                {
-                    if (denom%x == 0 && remainder%x == 0)
-                        cf.add(x);
-                }
-                remainder = remainder/cf.get(cf.size()-1);
-                denom = denom/cf.get(cf.size()-1);
-                if (whole == 0)
-                {
-                    System.out.println(remainder + "/" + denom);
-                }
-                else
-                {
-                    System.out.println(whole + " " + remainder + "/" + denom);
-                }
+                String ans = calculateReduction(num, denom);
+                System.out.println(num + " / " + denom + " = " + ans);
             }
         } catch (Exception e) {
             // TODO: handle exception
+            e.printStackTrace();
         }
+    }
+    public String calculateReduction(int n, int d)
+    {
+        //invalid input
+        if (d == 0)
+        {
+            return "indeterminate";
+        }
+
+        //whole and remainder
+        int whole = n/d;
+        int remainder = n%d;
+
+        if (remainder == 0)
+        {
+            return String.valueOf(whole);
+        }
+
+        //simplify remainder
+        int gcf = getGCF(d, remainder);
+        remainder = remainder/gcf;
+        d = d/gcf;
+        
+        if (whole == 0)
+        {
+            return String.valueOf(remainder + "/" + d);
+        }
+        else
+        {
+            return String.valueOf(whole + " " + remainder + "/" + d);
+        }
+
+    }
+    public int getGCF(int n1, int n2)
+    {
+        boolean found = false;
+
+        int gcf = 0;
+        if (n1 > n2)
+            gcf = n2+1;
+        else
+            gcf = n1+1;
+        while (!found)
+        {
+            gcf--;
+            if (n1%gcf == 0 && n2%gcf == 0)
+                found = true;
+        }
+        return gcf;
     }
     public static void main(String[]args)
     {

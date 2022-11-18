@@ -19,7 +19,7 @@ public class MazeProgram extends JPanel implements KeyListener {
     {
         frame = new JFrame();
         frame.add(this);
-        frame.setSize(1400,600);
+        frame.setSize(1000,600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.addKeyListener(this);
         setMaze();
@@ -89,6 +89,8 @@ public class MazeProgram extends JPanel implements KeyListener {
             }
             g2.setColor(Color.ORANGE);
             g2.fillRect(0, 0, 100, 100);
+            g2.setColor(Color.white);
+            g2.drawRect(0, 0, 100, 100);
             g2.setColor(Color.black);
             try 
             {
@@ -96,15 +98,22 @@ public class MazeProgram extends JPanel implements KeyListener {
                 {
                     for (int c = 0; c < 9; c++)
                     {
-                        if (maze[r+hero.getR()][c+hero.getC()].equalsIgnoreCase("*"))
-                            g2.fillRect(c*10+10, r*10+10, 10, 10);
+                        try 
+                        {
+                            if (maze[r+hero.getR()-4][c+hero.getC()-4].equalsIgnoreCase("*"))
+                                g2.fillRect(c*10+10, r*10+10, 10, 10);
+                        }
+                        catch (ArrayIndexOutOfBoundsException e)
+                        {
+
+                        }
                     }
                 }
             } catch (Exception e) {
                 // TODO: handle exception
             }
             g2.setColor(Color.WHITE);
-            g2.fillOval(10, 10, 10, 10);
+            g2.fillOval(50, 50, 10, 10);
         }
     }
     public void setMaze()
@@ -173,7 +182,7 @@ public class MazeProgram extends JPanel implements KeyListener {
             bottomWall(a);
             try
             {
-                if ((d == 'N' && visited[r][c+a] == true) || (d == 'S' && visited[r][c-a] == true) || (d == 'E' && visited[r+a][c] == true) || (d == 'E' && visited[r-a][c] == true))
+                if ((d == 'N' && visited[r-a][c] == true) || (d == 'S' && visited[r+a][c] == true) || (d == 'E' && visited[r][c+a] == true) || (d == 'W' && visited[r][c-a] == true))
                     bwalls.get(bwalls.size()-1).setColor(Color.YELLOW);
             }
             catch (ArrayIndexOutOfBoundsException e)
@@ -256,11 +265,11 @@ public class MazeProgram extends JPanel implements KeyListener {
 
     public void leftPath(int a)
     {
-                //rectangles initialize
-                int[] xl = {100 + 50*a, 150+50*a, 150 + 50*a, 100 + 50*a};
-                int[] yl = {100 + 50*a, 100 + 50*a, 500 - 50*a, 500 - 50*a};
-                //rectangles paint
-                lwalls.add(new Wall(xl, yl, 255-50*a, 255-50*a, 255-50*a, "Left", a, null));
+        //rectangles initialize
+        int[] xl = {100 + 50*a, 150+50*a, 150 + 50*a, 100 + 50*a};
+        int[] yl = {100 + 50*a, 100 + 50*a, 500 - 50*a, 500 - 50*a};
+        //rectangles paint
+        lwalls.add(new Wall(xl, yl, 255-50*a, 255-50*a, 255-50*a, "Left", a, null));
     }
 
 

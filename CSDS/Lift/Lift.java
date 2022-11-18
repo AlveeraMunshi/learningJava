@@ -6,7 +6,8 @@ import java.util.ArrayList;
 public class Lift{
 
 	int totalPassengers;
-	public Lift(){
+	public Lift()
+	{
 		File name = new File("/Users/alveeramunshi/Documents/GitHub/learningJava/CSDS/Lift/TheLiftFile.txt");
 		try{
 			BufferedReader input = new BufferedReader(new FileReader(name));
@@ -16,9 +17,11 @@ public class Lift{
 				int floors = Integer.parseInt(pieces[1]);
 				int[][] queues = new int[floors][0];
 
-				for(int r=0; r<floors; r++){
+				for(int r=0; r<floors; r++)
+				{
 					text = input.readLine();
-					if(!text.equals("")){
+					if(!text.equals(""))
+					{
 						pieces = text.split(",");
 						int[] floorQueue = new int[pieces.length];
 
@@ -34,7 +37,10 @@ public class Lift{
 
 				int[] stops = liftOperation(queues,cap);
 
-				for(int r=0; r<stops.length; r++){
+				//print output
+				System.out.print("Floors Visited: ");
+				for(int r=0; r<stops.length; r++)
+				{
 					System.out.print(stops[r]);
 					if(r<stops.length-1)
 						System.out.print(", ");
@@ -43,16 +49,20 @@ public class Lift{
 
 			}
 		}
-		catch(IOException e){
+		catch(IOException e)
+		{
 			System.err.println("Fule does not exist");
 		}
 	}
 
-	public int[] liftOperation(final int[][] queues, final int capacity) {
+	public int[] liftOperation(final int[][] queues, final int capacity) 
+	{
 		ArrayList<ArrayList<Person>> queuesCopy = new ArrayList<ArrayList<Person>>();
-		for(int i=0; i<queues.length; i++){
+		for(int i=0; i<queues.length; i++)
+		{
 			ArrayList<Person> queue = new ArrayList<Person>();
-			for (int j=0; j<queues[i].length; j++){
+			for (int j=0; j<queues[i].length; j++)
+			{
 				Person person = new Person(i, queues[i][j]);
 				queue.add(person);
 				totalPassengers++;
@@ -61,23 +71,26 @@ public class Lift{
 		}
 		//System.out.println(queuesCopy);
 		Lifter lift = new Lifter(queuesCopy, capacity);
-		while(totalPassengers>0 || lift.hasPassengers()){
+		while(totalPassengers>0 || lift.hasPassengers())
+		{
 			lift.stop();
 			lift.move();
 		}
 		return lift.getStops();
 	}
 
-	public class Lifter{
+	public class Lifter
+	{
 		private ArrayList<ArrayList<Person>> queues;
 		private int capacity;
 		private int queueSize;
 		private int currentFloor;
 		private boolean goingUp;
-		private ArrayList<Person> passengers;
 		private ArrayList<Integer> stops;
+		private ArrayList<Person> passengers;
 
-		public Lifter(ArrayList<ArrayList<Person>> queues, int capacity) {
+		public Lifter(ArrayList<ArrayList<Person>> queues, int capacity) 
+		{
 			this.queues = queues;
 			this.capacity = capacity;
 			currentFloor = 0;
@@ -87,17 +100,22 @@ public class Lift{
 			stops.add(0);
 		}
 
-		public String toString(){
+		public String toString()
+		{
 			return String.format("%-10s%-9s%-6s%-16s%-12s", queueSize, capacity, currentFloor, goingUp, passengers, stops);
 		}
 
-		public boolean hasPassengers(){
+		public boolean hasPassengers()
+		{
 			return passengers.size() > 0;
 		}
-		public int[] getStops(){
+		public int[] getStops()
+		{
 			stops.add(0);
-			for(int x=0; x<stops.size()-1; x++){
-				if(stops.get(x)==stops.get(x+1)){
+			for(int x=0; x<stops.size()-1; x++)
+			{
+				if(stops.get(x)==stops.get(x+1))
+				{
 					stops.remove(x);
 					x--;
 				}
@@ -108,33 +126,48 @@ public class Lift{
 			return arr;
 		}
 
-		public void move(){
-			if(goingUp){
+		//go up and down
+		public void move()
+		{
+			//up
+			if(goingUp)
+			{
 				currentFloor++;
 				if(currentFloor == queues.size()-1)
 					goingUp = !goingUp;
 			}
-			else{
+			//down
+			else
+			{
 				currentFloor--;
 				if(currentFloor==0)
 					goingUp = !goingUp;
 			}
 		}
 
-		public void stop(){
-			for(int i=0; i<passengers.size(); i++){
+		//let people off or on
+		public void stop()
+		{
+			for(int i=0; i<passengers.size(); i++)
+			{
 				Person person = passengers.get(i);
 				person.setCurrent(currentFloor);
-				if(person.isGettingOff()){
+				//getting off
+				if(person.isGettingOff())
+				{
 					passengers.remove(i);
 					i--;
 					stops.add(currentFloor);
 				}
 			}
-			for(int i=0; i<queues.get(currentFloor).size(); i++){
+			for(int i=0; i<queues.get(currentFloor).size(); i++)
+			{
 				Person person = queues.get(currentFloor).get(i);
-				if((goingUp && person.isGoingUp()) || (!goingUp && person.isGoingDown())){
-					if(passengers.size() < capacity){
+				//getting on
+				if((goingUp && person.isGoingUp()) || (!goingUp && person.isGoingDown()))
+				{
+					if(passengers.size() < capacity)
+					{
 						passengers.add(queues.get(currentFloor).remove(i));
 						totalPassengers--;
 						i--;
@@ -145,37 +178,51 @@ public class Lift{
 		}
 	}
 
-	public static class Person{
+	public static class Person
+	{
 		private int currentFloor;
 		private int targetFloor;
-		public Person(int currentFloor, int targetFloor){
+		public Person(int currentFloor, int targetFloor)
+		{
 			this.currentFloor = currentFloor;
 			this.targetFloor = targetFloor;
 		}
 
-		public boolean isGoingUp() {
+		//person goes up if their floor is higher
+		public boolean isGoingUp() 
+		{
 			return targetFloor > currentFloor;
 		}
 
-		public boolean isGoingDown() {
+		//person goes down if their floor is lower
+		public boolean isGoingDown() 
+		{
 			return targetFloor < currentFloor;
 		}
 
-		public boolean isGettingOff() {
+		//person gets off at their floor
+		public boolean isGettingOff() 
+		{
 			return targetFloor == currentFloor;
 		}
 
-		public void setCurrent(int current){
+		//current location storage
+		public void setCurrent(int current)
+		{
 			currentFloor = current;
 		}
-		public String toString(){
+
+		//print person info (current and intended)
+		public String toString()
+		{
 			return "Curr: " + currentFloor + "\tDest: " +targetFloor+ "\n";
 		}
 
 	}
 
 
-	public static void main(String[]args){
+	public static void main(String[]args)
+	{
 		Lift app = new Lift();
 	}
 }

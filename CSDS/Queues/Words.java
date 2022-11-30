@@ -28,7 +28,8 @@ public class Words {
             e.printStackTrace();
         }
         System.out.format("%-20s%s\n", "Queue", "Priority Queue");
-        for (int x = 0; x < q.size(); x++)
+        int size = pq.size();
+        for (int x = 0; x < size; x++)
         {
             System.out.format("%-20s%s\n", q.poll(), pq.poll());
         }

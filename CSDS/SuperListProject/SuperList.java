@@ -58,16 +58,22 @@ public class SuperList<E> {
         else //if position is in the middle
         {
             ListNode<E> current = root; //start at first node
-            for (int x = 0; x < position+1; x++)
+            for (int x = 0; x < position; x++)
             {
                 current = current.getNext(); //move to next node
             }
-            ListNode<E> currentprev = current.getPrev(); //saves current preceding node
-            currentprev.setNext(temp); //temp follows current preceding node
-            temp.setPrev(currentprev); //temp is preceded by current's previous
-            current.setPrev(temp); //temp precedes current node
-            temp.setNext(current); //current node follows temp
-            //value following current is unchanged
+            try
+            {
+                ListNode<E> currentprev = current.getPrev(); //saves current preceding node
+                currentprev.setNext(temp); //temp follows current preceding node
+                temp.setPrev(currentprev); //temp is preceded by current's previous
+                current.setPrev(temp); //temp precedes current node
+                temp.setNext(current); //current node follows temp
+                //value following current is unchanged
+            }
+            catch(Exception e)
+            {
+            }
             size++; //size increases
         }
     }
@@ -77,11 +83,7 @@ public class SuperList<E> {
         {
             throw new IndexOutOfBoundsException();
         }
-        if (size == 0) //if list is empty
-        {
-            return null;
-        }
-        else if (size == 1)
+        if (size == 1)
         {
             E temp = root.getValue(); // save value
             clear(); //clear list
@@ -119,43 +121,24 @@ public class SuperList<E> {
     }
     public E pop()
     {
-        try
+        E temp = end.getValue(); //saves value of end
+        if (temp == null) //if list is empty
         {
-            E temp = end.getValue(); //saves value of end
-            if (temp == null) //if list is empty
-            {
-                throw new EmptyStackException();
-            }
-            else
-            {
-                remove(size - 1); //removes end
-                return temp; //returns value of end
-            }
+            throw new EmptyStackException();
         }
-        catch (Exception e)
-        {
-            return null;
-        }
+        
+        remove(size - 1); //removes end
+        return temp; //returns value of end
     }
     public E poll()
     {
-        try
-        {
-            E temp = root.getValue(); //saves value of root
-            if (temp == null) //if list is empty
-            {
-                throw new EmptyStackException();
-            }
-            else
-            {
-                remove(0); //removes root
-                return temp; //returns value of root
-            }
-        }
-        catch (Exception e)
-        {
+        if(size==0)
             return null;
-        }
+
+        E temp = root.getValue(); //saves value of root
+        remove(0); //removes root
+        return temp; //returns value of root
+
     }
     public E stackPeek()
     {
@@ -238,12 +221,15 @@ public class SuperList<E> {
     {
         String output = "[";
         ListNode<E> temp=root;
-        for (int x = 0; x < size-1; x++)
+        for (int x = 0; x < size; x++)
         {
-            output += temp.getValue() + ", ";
+            if (temp != null)
+                output += temp.getValue();
+            if(x<size-1)
+                output += ", ";
             temp=temp.getNext();
         }
-        output += temp.getValue() + "]";
+        output += "]";
         return output;
     }
     public class ListNode<E>{

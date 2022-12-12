@@ -80,6 +80,16 @@ public class SuperListSimpleRunner
 		else
 			median = list.get(list.size() / 2);
 		System.out.println("The median is " + median);
+		System.out.print("The numbers after the median are ");
+		for (int x = 0; x < list.size()/2; x++)
+		{
+			System.out.print(list.get(x) + " ");
+		}
+		System.out.print("\nThe numbers before the median are ");
+		for (int x = list.size()/2; x < list.size(); x++)
+		{
+			System.out.print(list.get(x) + " ");
+		}
 
 		SuperList<String> sentence = new SuperList<String>();
 		String s = "The quick brown fox jumped over the lazy dog";

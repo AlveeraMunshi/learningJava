@@ -10,9 +10,9 @@ import java.awt.image.BufferedImage;
 public class JuliaSetProgram2 extends JPanel implements AdjustmentListener
 {
     JFrame frame;
-    JScrollBar A, B;
-    JLabel aLabel, bLabel;
-    double a, b;
+    JScrollBar A, B, Bri, Sat, Hue;
+    JLabel aLabel, bLabel, briLabel, satLabel, hueLabel;
+    double a, b, bri, sat, hue;
     JPanel scrollPanel, labelPanel, kingPanel;
     BufferedImage image;
     int zoom = 1;
@@ -26,11 +26,12 @@ public class JuliaSetProgram2 extends JPanel implements AdjustmentListener
         //panel for scroll bars
         scrollPanel = new JPanel();
         scrollPanel.setLayout(new GridLayout(2, 1)); //3 rows for 3 scrollbars
-        //scrollbars for each color
+        //scrollbars
         A = new JScrollBar(JScrollBar.HORIZONTAL, 0, 0, -2000, 2000);
         A.addAdjustmentListener(this);
         B = new JScrollBar(JScrollBar.HORIZONTAL, 0, 0, -2000, 2000);
         B.addAdjustmentListener(this);
+        //Bri = new JScrollBar(JScrollBar.HORIZONTAL, 0, 0, 0, 1);
         //add scrollbars to panel
         scrollPanel.add(A);
         scrollPanel.add(B);
@@ -86,7 +87,7 @@ public class JuliaSetProgram2 extends JPanel implements AdjustmentListener
                 }
                 int c;
                 if(i>0)
-                    c = Color.HSBtoRGB((300 / i) % 1, 1, 1); //outside colors
+                    c = Color.HSBtoRGB((300 / i) % 1, 1, 20); //outside colors
                 else 
                     c = Color.HSBtoRGB(0.33f, 1, 1); //eye color
                 image.setRGB(x, y, c);

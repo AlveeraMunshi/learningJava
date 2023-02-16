@@ -17,6 +17,11 @@ public class Minesweeper extends JFrame implements MouseListener
     ImageIcon flag, smile, win, dead, wait, mine;
     boolean gameOver = false;
     int clickCount = 0;
+    JMenuBar menuBar;
+    JMenu menu;
+    JMenuItem beginner, intermediate, expert;
+    JButton reset;
+
 
     public Minesweeper() 
     {
@@ -41,6 +46,35 @@ public class Minesweeper extends JFrame implements MouseListener
         this.setSize(1000, 1000);
         buttonPanel = new JPanel();
         setGrid(9,9);
+        menuBar = new JMenuBar();
+        menu = new JMenu("Difficulty");
+        beginner = new JMenuItem("Beginner");
+        beginner.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                numMines = 10;
+                setGrid(9,9);
+            }
+        });
+        intermediate = new JMenuItem("Intermediate");
+        intermediate.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                numMines = 40;
+                setGrid(16,16);
+            }
+        });
+        expert = new JMenuItem("Expert");
+        expert.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                numMines = 99;
+                setGrid(16,30);
+            }
+        });
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }

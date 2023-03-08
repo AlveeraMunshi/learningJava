@@ -25,6 +25,15 @@ public class Minesweeper extends JFrame implements MouseListener
 
     public Minesweeper() 
     {
+        try
+        {
+            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+
+        }
+        catch (Exception e)
+        {
+        }
         //frame = new JFrame("Minesweeper - The Game");
         for (int x = 1; x < 8; x++)
         {
@@ -43,9 +52,18 @@ public class Minesweeper extends JFrame implements MouseListener
         wait = new ImageIcon(wait.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));*/
         mine = new ImageIcon("/Users/alveeramunshi/Documents/GitHub/learningJava/CSDS/GUI/MineSweeperImages/mine0.png");
         mine = new ImageIcon(mine.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));
+        //setup screen
         this.setSize(1000, 1000);
-        buttonPanel = new JPanel();
-        setGrid(9,9);
+        setGrid(9,9); //default size
+        //reset button
+        reset = new JButton();
+        reset.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                setGrid(buttons.length, buttons[0].length);
+            }
+        });
         menuBar = new JMenuBar();
         menu = new JMenu("Difficulty");
         beginner = new JMenuItem("Beginner");
@@ -75,6 +93,14 @@ public class Minesweeper extends JFrame implements MouseListener
                 setGrid(16,30);
             }
         });
+        //add to menu
+        menu.add(beginner);
+        menu.add(intermediate);
+        menu.add(expert);
+        //add to menu bar
+        menuBar.add(menu);
+        menuBar.add(reset);
+        this.setJMenuBar(menuBar);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
@@ -82,6 +108,7 @@ public class Minesweeper extends JFrame implements MouseListener
     {
         if (buttonPanel != null)
             this.remove(buttonPanel);
+        buttonPanel = new JPanel();
         buttons = new JToggleButton[rows][cols];
         buttonPanel.setLayout(new GridLayout(rows, cols));
         //init buttons

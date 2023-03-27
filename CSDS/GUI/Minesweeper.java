@@ -4,6 +4,10 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Minesweeper extends JFrame implements MouseListener
 {
@@ -21,7 +25,11 @@ public class Minesweeper extends JFrame implements MouseListener
     JMenu menu;
     JMenuItem beginner, intermediate, expert;
     JButton reset;
-
+    Timer timer;
+    int timePassed = 0;
+    JTextField timeField;
+    GraphicsEnvironment ge;
+    Font clockFont;
 
     public Minesweeper() 
     {
@@ -42,14 +50,14 @@ public class Minesweeper extends JFrame implements MouseListener
         }
         flag = new ImageIcon("/Users/alveeramunshi/Documents/GitHub/learningJava/CSDS/GUI/MineSweeperImages/flag0.png");
         flag = new ImageIcon(flag.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));
-        /*smile = new ImageIcon("/Users/alveeramunshi/Documents/GitHub/learningJava/CSDS/GUI/MineSweeperImages/smile0.png");
+        smile = new ImageIcon("/Users/alveeramunshi/Documents/GitHub/learningJava/CSDS/GUI/MineSweeperImages/smile0.png");
         smile = new ImageIcon(smile.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));
         win = new ImageIcon("/Users/alveeramunshi/Documents/GitHub/learningJava/CSDS/GUI/MineSweeperImages/win0.png");
         win = new ImageIcon(win.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));
         dead = new ImageIcon("/Users/alveeramunshi/Documents/GitHub/learningJava/CSDS/GUI/MineSweeperImages/dead0.png");
         dead = new ImageIcon(dead.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));
         wait = new ImageIcon("/Users/alveeramunshi/Documents/GitHub/learningJava/CSDS/GUI/MineSweeperImages/wait0.png");
-        wait = new ImageIcon(wait.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));*/
+        wait = new ImageIcon(wait.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));
         mine = new ImageIcon("/Users/alveeramunshi/Documents/GitHub/learningJava/CSDS/GUI/MineSweeperImages/mine0.png");
         mine = new ImageIcon(mine.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));
         //setup screen
@@ -57,11 +65,20 @@ public class Minesweeper extends JFrame implements MouseListener
         setGrid(9,9); //default size
         //reset button
         reset = new JButton();
+        reset.setIcon(smile);
+        reset.setFocusable(false);
         reset.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
+                firstClick = true;
+                gameOver = false;
+                clickCount = 0;
+                timePassed = 0;
+                timeField.setText("   0:00");
                 setGrid(buttons.length, buttons[0].length);
+                if(timer!=null)
+		            timer.cancel();
             }
         });
         menuBar = new JMenuBar();
@@ -73,6 +90,8 @@ public class Minesweeper extends JFrame implements MouseListener
             {
                 numMines = 10;
                 setGrid(9,9);
+                if(timer!=null)
+		            timer.cancel();
             }
         });
         intermediate = new JMenuItem("Intermediate");
@@ -82,6 +101,8 @@ public class Minesweeper extends JFrame implements MouseListener
             {
                 numMines = 40;
                 setGrid(16,16);
+                if(timer!=null)
+		            timer.cancel();
             }
         });
         expert = new JMenuItem("Expert");
@@ -91,8 +112,25 @@ public class Minesweeper extends JFrame implements MouseListener
             {
                 numMines = 99;
                 setGrid(16,30);
+                if(timer!=null)
+		            timer.cancel();
             }
         });
+        //timer
+        try 
+        {
+            ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            String st = "/Users/alveeramunshi/Documents/GitHub/learningJava/CSDS/GUI";
+            clockFont=Font.createFont(Font.TRUETYPE_FONT, new File(st+"/digital-7.ttf"));
+            ge.registerFont(clockFont);
+        } 
+        catch (IOException|FontFormatException e) 
+        {
+        }
+        timeField = new JTextField("   0:00");
+        timeField.setFont(clockFont.deriveFont(18f));
+        timeField.setBackground(Color.BLACK);
+	    timeField.setForeground(Color.GREEN);
         //add to menu
         menu.add(beginner);
         menu.add(intermediate);
@@ -100,6 +138,7 @@ public class Minesweeper extends JFrame implements MouseListener
         //add to menu bar
         menuBar.add(menu);
         menuBar.add(reset);
+        menuBar.add(timeField);
         this.setJMenuBar(menuBar);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -190,6 +229,8 @@ public class Minesweeper extends JFrame implements MouseListener
                     //do stuff
                     dropMines(buttons.length, buttons[0].length); //drop mines
                     firstClick = false;
+                    timer= new Timer();
+                    timer.schedule(new UpdateTimer(),0,1000);
                 }
                 if ((int)buttons[clickR][clickC].getClientProperty("mineVal") != -1) //if not lose
                 {
@@ -197,7 +238,9 @@ public class Minesweeper extends JFrame implements MouseListener
                     clickCount++;
                     if (clickCount==buttons.length*buttons[0].length-numMines) //if win
                     {
-                        JOptionPane.showMessageDialog(null, "You are a winner! :)");
+                        //JOptionPane.showMessageDialog(null, "You are a winner! :)");
+                        reset.setIcon(win);
+                        timer.cancel();
                     }
                 }
                 else //if lose
@@ -205,7 +248,9 @@ public class Minesweeper extends JFrame implements MouseListener
                     //disable board
                     gameOver = true;
                     disableBoard();
-                    JOptionPane.showMessageDialog(null, "You are a loser! :(");
+                    //JOptionPane.showMessageDialog(null, "You are a loser! :(");
+                    reset.setIcon(dead);
+                    timer.cancel();
                 }
             }
             if (!firstClick && e.getButton() == MouseEvent.BUTTON3) //right click
@@ -243,7 +288,7 @@ public class Minesweeper extends JFrame implements MouseListener
         {
             //buttons[row][col].setText("" + buttons[row][col].getClientProperty("mineVal"));
             buttons[row][col].setIcon(numbers[(int)buttons[row][col].getClientProperty("mineVal")-1]); //set to number of mines around it
-            //buttons[row][col].setDisabledIcon(dead);
+            buttons[row][col].setDisabledIcon(numbers[(int)buttons[row][col].getClientProperty("mineVal")-1]);
             buttons[row][col].setEnabled(false);
         }
         else
@@ -272,7 +317,7 @@ public class Minesweeper extends JFrame implements MouseListener
             for(int c = 0; c < buttons[0].length; c++)
             {
                 ImageIcon icon = (ImageIcon) buttons[r][c].getIcon();
-                buttons[r][c].setDisabledIcon(icon); //set disabled icon to current icon
+                //buttons[r][c].setDisabledIcon(icon); //set disabled icon to current icon
                 //buttons[r][c].setText("" + buttons[r][c].getClientProperty("mineVal"));
                 if (buttons[r][c].getClientProperty("mineVal").equals(-1))
                 {
@@ -308,4 +353,17 @@ public class Minesweeper extends JFrame implements MouseListener
         // TODO Auto-generated method stub
         
     }
+    public class UpdateTimer extends TimerTask {
+		public void run() {
+			if(!gameOver){
+				timePassed++;
+                int seconds = timePassed%60;
+                int minutes = timePassed/60;
+                if (seconds < 10)
+                    timeField.setText("  "+minutes+":0"+seconds);
+                else
+                    timeField.setText("  "+minutes+":"+seconds);
+			}
+		}
+	}
 }

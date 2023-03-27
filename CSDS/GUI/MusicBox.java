@@ -2,23 +2,23 @@ package GUI;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
-import javax.swing.plaf.FileChooserUI;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MusicBox extends JFrame implements Runnable, ActionListener, AdjustmentListener
 {
-    JToggleButton[][] buttons = new JToggleButton[37][50];
-    JToggleButton playButton, clearButton;
+    JToggleButton[][] buttons;
+    boolean[][] oldButtons;
+    JToggleButton playButton;
+    JButton clearButton, resetButton;
     JPanel buttonPanel, controlPanel;
     JScrollPane scrollPane;
-    JMenu instruments, file;
-    JMenuItem bell, glockenspiel, marimba, oboe, oh_ah, piano, save, load;
+    JMenu instruments, file, addRemove;
+    JMenuItem bell, glockenspiel, marimba, oboe, oh_ah, piano, save, load, addColumn, add10Columns, removeColumn, remove10Columns;
     ArrayList<String> noteNames = new ArrayList<String>();
     String[] notesAdj = {"C", "CSharp", "D", "DSharp", "E", "F", "FSharp", "G", "GSharp", "A", "ASharp", "B"};
     ArrayList<String> buttonNames = new ArrayList<String>();
@@ -32,6 +32,7 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
     int tempo = 200;
     String currentDirectory = System.getProperty("user.dir");
     JFileChooser fileChooser = new JFileChooser(currentDirectory);
+    Character[][] song;
 
     public MusicBox() {
         try
@@ -80,45 +81,40 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
         noteNames.add("D1");
         noteNames.add("C#1");
         noteNames.add("C1");
+        //instantiate key buttons
+        createButtons(37, 50);
         //instantiate panels
-        buttonPanel = new JPanel(); //button
-        buttonPanel.setLayout(new GridLayout(37, 50));
         controlPanel = new JPanel(); //control
         controlPanel.setLayout(new GridLayout(1, 2));
-        scrollPane = new JScrollPane(buttonPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); //scroll
         setSize(3330, 4500); //frame
-        //instantiate buttons
-        for (int x = 0; x < buttons.length; x++) 
-        {
-            for (int y = 0; y < buttons[x].length; y++) 
-            {
-                buttons[x][y] = new JToggleButton();
-                buttons[x][y].setBackground(Color.WHITE);
-                buttons[x][y].setPreferredSize(new Dimension(30, 30));
-                buttons[x][y].setText(noteNames.get(x)); //name set
-
-                buttons[x][y].setMargin(new Insets(0, 0, 0, 0));
-                buttons[x][y].addActionListener(this);
-            }
-        }
+        //instantiate control buttons
         playButton = new JToggleButton("Play");
         playButton.addActionListener(this);
-        clearButton = new JToggleButton("Clear");
+        clearButton = new JButton("Clear");
         clearButton.addActionListener(this);
+        resetButton = new JButton("Reset");
+        resetButton.addActionListener(this);
         //instantiate instruments menu
-        instruments = new JMenu();
+        instruments = new JMenu("Instruments");
+        instruments.setMnemonic(KeyEvent.VK_I);
         menuBar = new JMenuBar();
         bell = new JMenuItem("Bell");
+        bell.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
         bell.addActionListener(this);
         glockenspiel = new JMenuItem("Glockenspiel");
+        glockenspiel.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
         glockenspiel.addActionListener(this);
         marimba = new JMenuItem("Marimba");
+        marimba.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
         marimba.addActionListener(this);
         oboe = new JMenuItem("Oboe");
+        oboe.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
         oboe.addActionListener(this);
         oh_ah = new JMenuItem("Oh_Ah");
+        oh_ah.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
         oh_ah.addActionListener(this);
         piano = new JMenuItem("Piano");
+        piano.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
         piano.addActionListener(this);
         //add instruments menu items to menu
         instruments.add(bell);
@@ -128,33 +124,53 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
         instruments.add(oh_ah);
         instruments.add(piano);
         //instantiate file menu
-        file = new JMenu();
+        file = new JMenu("File");
+        file.setMnemonic(KeyEvent.VK_F);
         save = new JMenuItem("Save");
+        save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         save.addActionListener(this);
         load = new JMenuItem("Load");
+        load.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
         load.addActionListener(this);
         //add file menu items to menu
         file.add(save);
         file.add(load);
+        //instantiate addremove menu
+        addRemove = new JMenu("Add/Remove");
+        addColumn = new JMenuItem("Add Column");
+        addColumn.addActionListener(this);
+        removeColumn = new JMenuItem("Remove Column");
+        removeColumn.addActionListener(this);
+        add10Columns = new JMenuItem("Add 10 Columns");
+        add10Columns.addActionListener(this);
+        remove10Columns = new JMenuItem("Remove 10 Columns");
+        remove10Columns.addActionListener(this);
+        //add addremove menu items to menu
+        addRemove.add(addColumn);
+        addRemove.add(removeColumn);
+        addRemove.add(add10Columns);
+        addRemove.add(remove10Columns);
         //add clips
         loadTones(instrumentNames[0]);
         //attach buttons to panel
-        for (int x = 0; x < buttons.length; x++) 
+        /*for (int x = 0; x < buttons.length; x++) 
         {
             for (int y = 0; y < buttons[x].length; y++) 
             {
                 buttonPanel.add(buttons[x][y]);
             }
-        }
+        }*/
         //tempo
         tempoBar = new JScrollBar(JScrollBar.HORIZONTAL, 200, 0, 50, 350);
         tempoBar.addAdjustmentListener(this);
         //add to hierarchy
         controlPanel.add(playButton);
         controlPanel.add(clearButton);
+        controlPanel.add(resetButton);
         menuBar.add(file);
         menuBar.add(instruments);
         menuBar.add(controlPanel);
+        menuBar.add(addRemove);
         this.add(tempoBar, BorderLayout.SOUTH);
         this.setJMenuBar(menuBar);
         this.add(scrollPane);
@@ -205,22 +221,22 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
             {
                 isPlaying = false;
                 playButton.setText("Play");
+                c = 0;
             }
             else
             {
                 isPlaying = true;
                 playButton.setText("Stop");
+                c = 0;
             }
         }
         else if (e.getSource() == clearButton)
         {
-            for (int x = 0; x < buttons.length; x++) 
-            {
-                for (int y = 0; y < buttons[x].length; y++) 
-                {
-                    buttons[x][y].setSelected(false);
-                }
-            }
+            clear();
+            reset();
+        }
+        else if (e.getSource() == resetButton)
+        {
             reset();
         }
         else if (e.getSource() == bell)
@@ -269,6 +285,22 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
             reset();
             loadSong();
         }
+        else if (e.getSource() == addColumn)
+        {
+            addCol(1);
+        }
+        else if (e.getSource() == removeColumn)
+        {
+            removeCol(1);
+        }
+        else if (e.getSource() == add10Columns)
+        {
+            addCol(10);
+        }
+        else if (e.getSource() == remove10Columns)
+        {
+            removeCol(10);
+        }
     }
     public void reset()
     {
@@ -276,6 +308,16 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
         c = 0;
         isPlaying = false;
         playButton.setText("Play");
+    }
+    public void clear()
+    {
+        for (int x = 0; x < buttons.length; x++) 
+        {
+            for (int y = 0; y < buttons[x].length; y++) 
+            {
+                buttons[x][y].setSelected(false);
+            }
+        }
     }
     public void saveSong()
     {
@@ -300,27 +342,29 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
                 {
                     if (x == 0)
                     {
-                        currSong += tempo + " " + noteynames[x] + "\n";
+                        currSong += tempo + " " + buttons[0].length + "\n";
                     }
                     else
                     {
                         currSong += noteynames[x] + " ";
-                    }
-                    for (int y = 0; y < buttons[x].length; y++) 
-                    {
-                        if (buttons[x][y].isSelected())
+                    
+                        for (int y = 0; y < buttons[x].length; y++) 
                         {
-                            currSong += "x";
+                            if (buttons[x-1][y].isSelected())
+                            {
+                                currSong += "x";
+                            }
+                            else
+                            {
+                                currSong += "-";
+                            }
                         }
-                        else
-                        {
-                            currSong += "-";
-                        }
+                        currSong += "\n";
                     }
-                    currSong += "\n";
                 }
                 BufferedWriter outputStream = new BufferedWriter(new FileWriter(path));
                 outputStream.write(currSong);
+                outputStream.close();
             }
             catch (IOException e1)
             {
@@ -328,28 +372,45 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
             }
         }
     }
+    public void tempSave()
+    {
+        oldButtons = new boolean[37][buttons[0].length];
+        for (int x = 0; x < buttons.length; x++) 
+        {
+            for (int y = 0; y < buttons[x].length; y++) 
+            {
+                oldButtons[x][y] = buttons[x][y].isSelected();
+            }
+        }
+    }
     public void loadSong()
     {
         //Make the loadSong method that loads a song from a file.
         int returnVal = fileChooser.showOpenDialog(this);
+
         if (returnVal == JFileChooser.APPROVE_OPTION)
         {
             try
             {
+
                 File loadFile = fileChooser.getSelectedFile();
+
                 BufferedReader inputStream = new BufferedReader(new FileReader(loadFile));
+
                 String line = inputStream.readLine();
+                
                 String[] temp = line.split(" ");
                 tempo = Integer.parseInt(temp[0]);
                 int cs = Integer.parseInt(temp[1]);
                 tempoBar.setValue(tempo);
-                Character[][] song = new Character[37][cs];
+                createButtons(37, cs);
+                song = new Character[37][cs];
                 int r = 0;
                 while ((line = inputStream.readLine()) != null)
                 {
                     for (int p = 0; p < cs; p++)
                     {
-                        song[r][c] = line.charAt(c+2);
+                        song[r][p] = line.charAt(p+2);
                     }
                     r++;
                 }
@@ -361,35 +422,93 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
             }
         }
     }
-    public void setNotes(Character[][] song)
+    public void tempLoad()
     {
-        //Make the setNotes method that sets the notes in the song based on the song array.
-        scrollPane.remove(buttonPanel);
-        this.remove(scrollPane);
+        int maxC;
+        if (oldButtons[0].length > buttons[0].length)
+        {
+            maxC = buttons[0].length;
+        }
+        else
+        {
+            maxC = oldButtons[0].length;
+        }
+        for (int x = 0; x < oldButtons.length; x++) 
+        {
+            for (int y = 0; y < maxC; y++) 
+            {
+                buttons[x][y].setSelected(oldButtons[x][y]);
+            }
+        }
+        revalidate();
+    }
+    public void addCol(int num)
+    {
+        //Make the addCol method that adds the specified number of columns to the song.
+        tempSave();
+        if (playButton.getText().equals("Stop"))
+        {
+            playButton.doClick();
+        }
+        createButtons(37, buttons[0].length + num);
+        tempLoad();
+    }
+    public void removeCol(int num)
+    {
+        //Make the removeCol method that removes the specified number of columns from the song.
+        tempSave();
+        if (playButton.getText().equals("Stop"))
+        {
+            playButton.doClick();
+        }
+        createButtons(37, buttons[0].length - num);
+        tempLoad();
+    }
+    public void createButtons(int rows, int cols)
+    {
+        if (buttonPanel != null)
+        {
+            scrollPane.remove(buttonPanel);
+            this.remove(scrollPane);
+        }
+        if (cols < 0)
+        {
+            cols = 0;
+        }
         buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(song.length, song[0].length));
-        buttons = new JToggleButton[song.length][song[0].length];
+        buttons = new JToggleButton[rows][cols];
+        buttonPanel.setLayout(new GridLayout(rows, cols));
+        System.out.println(buttons.length + " " + buttons[0].length);
         for (int x = 0; x < buttons.length; x++) 
         {
             for (int y = 0; y < buttons[x].length; y++) 
             {
                 buttons[x][y] = new JToggleButton();
                 buttons[x][y].setBackground(Color.WHITE);
-                buttons[x][y].setPreferredSize(new Dimension(30, 30));
+                buttons[x][y].setPreferredSize(new Dimension(40, 40));
                 buttons[x][y].setText(noteNames.get(x)); //name set
 
                 buttons[x][y].setMargin(new Insets(0, 0, 0, 0));
                 buttons[x][y].addActionListener(this);
                 buttonPanel.add(buttons[x][y]);
+                
             }
         }
+        scrollPane = new JScrollPane(buttonPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); //scroll
+        this.add(scrollPane);
+    }
+    public void setNotes(Character[][] song)
+    {
+        //Make the setNotes method that sets the notes in the song based on the song array.
+        scrollPane.remove(buttonPanel);
+        this.remove(scrollPane);
         scrollPane = new JScrollPane(buttonPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); //scroll
         this.add(scrollPane, BorderLayout.CENTER);
         for (int x = 0; x < buttons.length; x++) 
         {
-            for (int y = 0; y < buttons[x].length; y++) 
+            for (int y = 0; y < buttons[x].length && y < song[x].length; y++) 
             {
-                if (song[x][y] == 'x')
+                if (song[x][y]!=null && song[x][y] == 'x')
                 {
                     buttons[x][y].setSelected(true);
                 }
@@ -416,24 +535,27 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
                         {
                             //start clip
                             clips.get(r).start();
+                            buttons[r][c].setBackground(Color.YELLOW);
                         }
                     }
-                    Thread.sleep(tempo);
+                    timingThread.sleep(tempo);
                     for (int r = 0; r < buttons.length; r++)
                     {
                         if (buttons[r][c].isSelected())
                         {
                             //stop clip
                             clips.get(r).stop();
+                            clips.get(r).setFramePosition(0);
+                            buttons[r][c].setBackground(Color.WHITE);
                         }
                     }
                     c++;
-                    if (c >= buttons[0].length)
+                    if (c == buttons[0].length - 1)
                         c = 0;
                 }
                 else
                 {
-                    Thread.sleep(tempo);
+                    timingThread.sleep(tempo);
                 }
             }
             catch (InterruptedException e)

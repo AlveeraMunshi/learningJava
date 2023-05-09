@@ -20,18 +20,18 @@ public class CubeGleaming {
                 int south = 5;
                 int down = 6;
                 String[] pieces = text.split("");
-                int currentkey = 0;
-                while (currentkey < pieces.length)
+                int currkey = 0;
+                while (currkey < pieces.length)
                 {
-                    String currentletter = pieces[currentkey];
-                    System.out.print(currentletter);
+                    String currletter = pieces[currkey];
+                    System.out.print(currletter);
                     int ogup = up;
                     int ognorth = north;
                     int ogwest = west;
                     int ogeast = east;
                     int ogsouth = south;
                     int ogdown = down;
-                    switch(currentletter)
+                    switch(currletter)
                     {
                         case "N":
                             up = ogsouth;
@@ -58,7 +58,7 @@ public class CubeGleaming {
                             ogdown = ogwest;
                             break;
                     }
-                    currentkey++;
+                    currkey++;
                 }
                 System.out.println("Up: " + up);
             }

@@ -71,7 +71,7 @@ public class JuliaSetProgram extends JPanel implements AdjustmentListener
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
     }
     @Override
-    public void adjustmentValueChanged(AdjustmentEvent e) {
+    public void adjustmentvalChanged(AdjustmentEvent e) {
         // TODO Auto-generated method stub
         if (e.getSource() == red)
         {

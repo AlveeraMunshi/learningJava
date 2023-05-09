@@ -8,8 +8,8 @@ public class CommonDenominators {
     TreeMap<Long, Integer> primefactors = new TreeMap<>();
     for (long[] pair : lst)
     {
-      long numer = pair[0]; //current numerator
-      long denom = pair[1]; // current denominator
+      long numer = pair[0]; //curr numerator
+      long denom = pair[1]; // curr denominator
       //simplify fractions
       for (int i = 2; i <= numer || i <= denom; i++) //checks possible divisors
       {
@@ -52,13 +52,13 @@ public class CommonDenominators {
     String ans = "";
     for (long[] pair : lst)
     {
-      long numer = pair[0]; //current numerator
-      long denom = pair[1]; // current denominator
+      long numer = pair[0]; //curr numerator
+      long denom = pair[1]; // curr denominator
       if (denom == cd)
       {
         numer = numer;
       }
-      else if (denom < cd) // bigger common than current
+      else if (denom < cd) // bigger common than curr
       {
         numer*=(cd/denom); //to get from denom to biggert cd, we would multiply. number to multiply would be the division of cd and denom
         System.out.println("*: "+numer+"/"+denom+" "+cd);

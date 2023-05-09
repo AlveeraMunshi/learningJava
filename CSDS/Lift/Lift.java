@@ -84,7 +84,7 @@ public class Lift{
 		private ArrayList<ArrayList<Person>> queues;
 		private int capacity;
 		private int queueSize;
-		private int currentFloor;
+		private int currFloor;
 		private boolean goingUp;
 		private ArrayList<Integer> stops;
 		private ArrayList<Person> passengers;
@@ -93,7 +93,7 @@ public class Lift{
 		{
 			this.queues = queues;
 			this.capacity = capacity;
-			currentFloor = 0;
+			currFloor = 0;
 			goingUp = true;
 			passengers = new ArrayList<Person>();
 			stops = new ArrayList<Integer>();
@@ -102,7 +102,7 @@ public class Lift{
 
 		public String toString()
 		{
-			return String.format("%-10s%-9s%-6s%-16s%-12s", queueSize, capacity, currentFloor, goingUp, passengers, stops);
+			return String.format("%-10s%-9s%-6s%-16s%-12s", queueSize, capacity, currFloor, goingUp, passengers, stops);
 		}
 
 		public boolean hasPassengers()
@@ -132,15 +132,15 @@ public class Lift{
 			//up
 			if(goingUp)
 			{
-				currentFloor++;
-				if(currentFloor == queues.size()-1)
+				currFloor++;
+				if(currFloor == queues.size()-1)
 					goingUp = !goingUp;
 			}
 			//down
 			else
 			{
-				currentFloor--;
-				if(currentFloor==0)
+				currFloor--;
+				if(currFloor==0)
 					goingUp = !goingUp;
 			}
 		}
@@ -151,28 +151,28 @@ public class Lift{
 			for(int i=0; i<passengers.size(); i++)
 			{
 				Person person = passengers.get(i);
-				person.setCurrent(currentFloor);
+				person.setcurr(currFloor);
 				//getting off
 				if(person.isGettingOff())
 				{
 					passengers.remove(i);
 					i--;
-					stops.add(currentFloor);
+					stops.add(currFloor);
 				}
 			}
-			for(int i=0; i<queues.get(currentFloor).size(); i++)
+			for(int i=0; i<queues.get(currFloor).size(); i++)
 			{
-				Person person = queues.get(currentFloor).get(i);
+				Person person = queues.get(currFloor).get(i);
 				//getting on
 				if((goingUp && person.isGoingUp()) || (!goingUp && person.isGoingDown()))
 				{
 					if(passengers.size() < capacity)
 					{
-						passengers.add(queues.get(currentFloor).remove(i));
+						passengers.add(queues.get(currFloor).remove(i));
 						totalPassengers--;
 						i--;
 					}
-					stops.add(currentFloor);
+					stops.add(currFloor);
 				}
 			}
 		}
@@ -180,42 +180,42 @@ public class Lift{
 
 	public static class Person
 	{
-		private int currentFloor;
+		private int currFloor;
 		private int targetFloor;
-		public Person(int currentFloor, int targetFloor)
+		public Person(int currFloor, int targetFloor)
 		{
-			this.currentFloor = currentFloor;
+			this.currFloor = currFloor;
 			this.targetFloor = targetFloor;
 		}
 
 		//person goes up if their floor is higher
 		public boolean isGoingUp() 
 		{
-			return targetFloor > currentFloor;
+			return targetFloor > currFloor;
 		}
 
 		//person goes down if their floor is lower
 		public boolean isGoingDown() 
 		{
-			return targetFloor < currentFloor;
+			return targetFloor < currFloor;
 		}
 
 		//person gets off at their floor
 		public boolean isGettingOff() 
 		{
-			return targetFloor == currentFloor;
+			return targetFloor == currFloor;
 		}
 
-		//current location storage
-		public void setCurrent(int current)
+		//curr location storage
+		public void setcurr(int curr)
 		{
-			currentFloor = current;
+			currFloor = curr;
 		}
 
-		//print person info (current and intended)
+		//print person info (curr and intended)
 		public String toString()
 		{
-			return "Curr: " + currentFloor + "\tDest: " +targetFloor+ "\n";
+			return "Curr: " + currFloor + "\tDest: " +targetFloor+ "\n";
 		}
 
 	}

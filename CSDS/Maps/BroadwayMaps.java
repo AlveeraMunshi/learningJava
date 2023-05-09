@@ -52,8 +52,8 @@ public class BroadwayMaps {
             String month = show.date.substring(0, 2); //month is first two digits of date
             if (grossByMonth.containsKey(show.month)) //if month is already in map
             {
-                long gross = grossByMonth.get(show.month); //get current gross
-                gross += show.gross; //add show's gross to current gross
+                long gross = grossByMonth.get(show.month); //get curr gross
+                gross += show.gross; //add show's gross to curr gross
                 grossByMonth.put(show.month, gross); //put new gross in map
             }
             else
@@ -69,13 +69,13 @@ public class BroadwayMaps {
     public void grossByType(ArrayList<Show> shows)
     {
         NumberFormat nf = NumberFormat.getCurrencyInstance();
-        TreeMap<String, Long> grossByType = new TreeMap<>(); //String key = type, Long value = gross
+        TreeMap<String, Long> grossByType = new TreeMap<>(); //String key = type, Long val = gross
         for (Show show : shows) //for each show
         {
             if (grossByType.containsKey(show.type)) //if type is already in map
             {
-                long gross = grossByType.get(show.type); //get current gross
-                gross += show.gross; //add show's gross to current gross
+                long gross = grossByType.get(show.type); //get curr gross
+                gross += show.gross; //add show's gross to curr gross
                 grossByType.put(show.type, gross); //put new gross in map
             }
             else
@@ -90,13 +90,13 @@ public class BroadwayMaps {
     }
     public void attendanceByType(ArrayList<Show> shows)
     {
-        TreeMap<String, Integer> attendanceByType = new TreeMap<>(); //String key = type, Integer value = attendance
+        TreeMap<String, Integer> attendanceByType = new TreeMap<>(); //String key = type, Integer val = attendance
         for (Show show : shows) //for each show
         {
             if (attendanceByType.containsKey(show.type)) //if type is already in map
             {
-                int attendance = attendanceByType.get(show.type); //get current attendance
-                attendance += show.attendance; //add show's attendance to current attendance
+                int attendance = attendanceByType.get(show.type); //get curr attendance
+                attendance += show.attendance; //add show's attendance to curr attendance
                 attendanceByType.put(show.type, attendance); //put new attendance in map
             }
             else
@@ -112,13 +112,13 @@ public class BroadwayMaps {
     public void grossByShowPerWeek(ArrayList<Show> shows) //uses same logic as grossByMonth, just every row is used
     {
         NumberFormat nf = NumberFormat.getCurrencyInstance();
-        TreeMap<String, Long> grossByShowPerWeek = new TreeMap<>(); //String key = show, Long value = gross
+        TreeMap<String, Long> grossByShowPerWeek = new TreeMap<>(); //String key = show, Long val = gross
         for (Show show : shows) //for each show
         {
             if (grossByShowPerWeek.containsKey(show.name)) //if show is already in map
             {
-                long gross = grossByShowPerWeek.get(show.name); //get current gross
-                gross += show.gross; //add show's gross to current gross
+                long gross = grossByShowPerWeek.get(show.name); //get curr gross
+                gross += show.gross; //add show's gross to curr gross
                 grossByShowPerWeek.put(show.name, gross); //put new gross in map
             }
             else
@@ -133,13 +133,13 @@ public class BroadwayMaps {
     }
     public void attendanceByShowPerWeek(ArrayList<Show> shows) //uses same logic as grossByShowPerWeek, just every row is used
     {
-        TreeMap<String, Integer> attendanceByShowPerWeek = new TreeMap<>(); //String key = show, Integer value = attendance
+        TreeMap<String, Integer> attendanceByShowPerWeek = new TreeMap<>(); //String key = show, Integer val = attendance
         for (Show show : shows) //for each show
         {
             if (attendanceByShowPerWeek.containsKey(show.name)) //if show is already in map
             {
-                int attendance = attendanceByShowPerWeek.get(show.name); //get current attendance
-                attendance += show.attendance; //add show's attendance to current attendance
+                int attendance = attendanceByShowPerWeek.get(show.name); //get curr attendance
+                attendance += show.attendance; //add show's attendance to curr attendance
                 attendanceByShowPerWeek.put(show.name, attendance); //put new attendance in map
             }
             else
@@ -154,13 +154,13 @@ public class BroadwayMaps {
     }
     public void attendanceByTheatre(ArrayList<Show> shows)
     {
-        TreeMap<String, Integer> attendanceByTheatre = new TreeMap<>(); //String key = theatre, Integer value = attendance
+        TreeMap<String, Integer> attendanceByTheatre = new TreeMap<>(); //String key = theatre, Integer val = attendance
         for (Show show : shows) //for each show
         {
             if (attendanceByTheatre.containsKey(show.theatre)) //if theatre is already in map
             {
-                int attendance = attendanceByTheatre.get(show.theatre); //get current attendance
-                attendance += show.attendance; //add show's attendance to current attendance
+                int attendance = attendanceByTheatre.get(show.theatre); //get curr attendance
+                attendance += show.attendance; //add show's attendance to curr attendance
                 attendanceByTheatre.put(show.theatre, attendance); //put new attendance in map
             }
             else
@@ -175,13 +175,13 @@ public class BroadwayMaps {
     }
     public void attendanceByMonth(ArrayList<Show> shows)
     {
-        TreeMap<Integer, Integer> attendanceByMonth = new TreeMap<>(); //String key = month, Integer value = attendance
+        TreeMap<Integer, Integer> attendanceByMonth = new TreeMap<>(); //String key = month, Integer val = attendance
         for (Show show : shows) //for each show
         {
             if (attendanceByMonth.containsKey(show.month)) //if month is already in map
             {
-                int attendance = attendanceByMonth.get(show.month); //get current attendance
-                attendance += show.attendance; //add show's attendance to current attendance
+                int attendance = attendanceByMonth.get(show.month); //get curr attendance
+                attendance += show.attendance; //add show's attendance to curr attendance
                 attendanceByMonth.put(show.month, attendance); //put new attendance in map
             }
             else
@@ -196,13 +196,13 @@ public class BroadwayMaps {
     }
     public void showsByTypePerWeek(ArrayList<Show> shows)
     {
-        TreeMap<String, Integer> showsByTypePerWeek = new TreeMap<>(); //String key = type, Integer value = number of shows
+        TreeMap<String, Integer> showsByTypePerWeek = new TreeMap<>(); //String key = type, Integer val = number of shows
         for (Show show : shows) //for each show
         {
             if (showsByTypePerWeek.containsKey(show.type)) //if type is already in map
             {
-                int showsInType = showsByTypePerWeek.get(show.type); //get current number of shows
-                showsInType++; //add 1 to current number of shows
+                int showsInType = showsByTypePerWeek.get(show.type); //get curr number of shows
+                showsInType++; //add 1 to curr number of shows
                 showsByTypePerWeek.put(show.type, showsInType); //put new number of shows in map
             }
             else

@@ -8,14 +8,14 @@ class FactDecomp {
       TreeMap<Integer, Integer> factors = new TreeMap<>();
       for (int x = n; x >= 2; x--) // check all nums < max from max to 2
       {
-        int current = x; // save initial
+        int curr = x; // save initial
         int f = 2; // first factor
-        while (current > 1) // check all possible factors
+        while (curr > 1) // check all possible factors
         {
           //counts number of times divisible
-          while (current%f == 0) // if a factor
+          while (curr%f == 0) // if a factor
           {
-            current = current/f; // divide cleanly
+            curr = curr/f; // divide cleanly
             if (factors.containsKey(f))
             {
               int count = factors.get(f);

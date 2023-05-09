@@ -21,14 +21,14 @@ public class PickPeaks {
       int pc = 0;
       for (int x = 1; x < arr.length; x++) //goes through entire array
       {
-        if (arr[x] == arr[x-1] && !plateau) //if two values same
+        if (arr[x] == arr[x-1] && !plateau) //if two vals same
         {
           if (x>2 && arr[x-2] < arr[x-1])
             plateau = true; //theres a plateau
         }
         if (plateau)
           pc++;
-        if (plateau && arr[x] != arr[x-1]) //when plateau ends (values stop being same)
+        if (plateau && arr[x] != arr[x-1]) //when plateau ends (vals stop being same)
         {
           plateau = false; //no more plateau
           if (arr[x] < arr[x-1])

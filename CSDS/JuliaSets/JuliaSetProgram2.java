@@ -79,7 +79,7 @@ public class JuliaSetProgram2 extends JPanel implements AdjustmentListener, Acti
         labelPanel = new JPanel();
         labelPanel.setPreferredSize(new Dimension(100, 50));
         labelPanel.setLayout(new GridLayout(10, 1)); //rows for each label
-        //labels for each value
+        //labels for each val
         a = aBar.getValue()/1000.0;
         aLabel = new JLabel("A: " + a);
         b = bBar.getValue()/1000.0;
@@ -172,7 +172,7 @@ public class JuliaSetProgram2 extends JPanel implements AdjustmentListener, Acti
         return image;
     }
     @Override
-    public void adjustmentValueChanged(AdjustmentEvent e) {
+    public void adjustmentvalChanged(AdjustmentEvent e) {
         // TODO Auto-generated method stub
         if (e.getSource() == aBar)
         {
@@ -263,16 +263,16 @@ public class JuliaSetProgram2 extends JPanel implements AdjustmentListener, Acti
         }
         else if (e.getSource() == reset)
         {
-            aBar.setValue(0);
-            bBar.setValue(0);
-            zoomBar.setValue(1000);
-            briBar.setValue(1000);
-            satBar.setValue(1000);
-            huefBar.setValue(0);
-            huebBar.setValue(0);
-            sizeBar.setValue(1000);
-            shapeBar.setValue(1000);
-            iterationBar.setValue(1000);
+            aBar.setval(0);
+            bBar.setval(0);
+            zoomBar.setval(1000);
+            briBar.setval(1000);
+            satBar.setval(1000);
+            huefBar.setval(0);
+            huebBar.setval(0);
+            sizeBar.setval(1000);
+            shapeBar.setval(1000);
+            iterationBar.setval(1000);
         }
     }
     @Override

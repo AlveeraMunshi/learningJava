@@ -19,7 +19,7 @@ public class DecimalToBinary {
         String forwardbinary = "";
         while (!backbinary.empty())
         {
-            forwardbinary+=String.valueOf(backbinary.pop());
+            forwardbinary+=String.valOf(backbinary.pop());
         }
         System.out.println(forwardbinary);
 

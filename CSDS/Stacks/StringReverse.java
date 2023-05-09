@@ -17,7 +17,7 @@ public class StringReverse {
         String backstr = "";
         while (!forwardstr.empty())
         {
-            backstr+=String.valueOf(forwardstr.pop());
+            backstr+=String.valOf(forwardstr.pop());
         }
         System.out.println(backstr);
 

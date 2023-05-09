@@ -30,8 +30,8 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
     boolean isPlaying = false;
     JScrollBar tempoBar;
     int tempo = 200;
-    String currentDirectory = System.getProperty("user.dir");
-    JFileChooser fileChooser = new JFileChooser(currentDirectory);
+    String currDirectory = System.getProperty("user.dir");
+    JFileChooser fileChooser = new JFileChooser(currDirectory);
     Character[][] song;
 
     public MusicBox() {
@@ -207,7 +207,7 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
         }
     }
     @Override
-    public void adjustmentValueChanged(AdjustmentEvent e) {
+    public void adjustmentvalChanged(AdjustmentEvent e) {
         // TODO Auto-generated method stub
         tempo = tempoBar.getValue();
     }
@@ -304,7 +304,7 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
     }
     public void reset()
     {
-        //Make the reset method that sets the column value to 0, playing to false, and the text on the Play/Stop button to “Play”.
+        //Make the reset method that sets the column val to 0, playing to false, and the text on the Play/Stop button to “Play”.
         c = 0;
         isPlaying = false;
         playButton.setText("Play");
@@ -321,7 +321,7 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
     }
     public void saveSong()
     {
-        //Make the saveSong method that saves the current song to a file.
+        //Make the saveSong method that saves the curr song to a file.
         FileNameExtensionFilter filter = new FileNameExtensionFilter("*.txt", ".txt");
         fileChooser.setFileFilter(filter);
         int returnVal = fileChooser.showSaveDialog(this);
@@ -402,7 +402,7 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
                 String[] temp = line.split(" ");
                 tempo = Integer.parseInt(temp[0]);
                 int cs = Integer.parseInt(temp[1]);
-                tempoBar.setValue(tempo);
+                tempoBar.setval(tempo);
                 createButtons(37, cs);
                 song = new Character[37][cs];
                 int r = 0;

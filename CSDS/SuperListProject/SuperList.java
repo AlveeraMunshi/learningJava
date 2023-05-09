@@ -3,7 +3,7 @@ package SuperListProject;
 import java.util.EmptyStackException;
 
 public class SuperList<E> {
-    private ListNode<E> root, end;
+    private Listprev<E> root, end;
     private int size = 0;
     public SuperList()
     {
@@ -19,7 +19,7 @@ public class SuperList<E> {
     }
     public void add(E item)
     {
-        ListNode<E> temp = new ListNode(item);
+        Listprev<E> temp = new Listprev(item);
 
         if (isEmpty()) //if list empty
         {
@@ -30,16 +30,16 @@ public class SuperList<E> {
         }
         else //if list isn't empty
         {
-            //new node is added to end
-            temp.setPrev(end); //temp precedes current end
-            end.setNext(temp); //current end follows temp
+            //new prev is added to end
+            temp.setPrev(end); //temp precedes curr end
+            end.setNext(temp); //curr end follows temp
             end = temp; //temp is now the end
         }
         size++; //size increases
     }
     public void add(int position, E item)
     {
-        ListNode<E> temp = new ListNode(item); //given value is stored in a new node
+        Listprev<E> temp = new Listprev(item); //given val is stored in a new prev
         if (position < 0 || position > size) //if position is out of bounds
         {
             throw new IndexOutOfBoundsException();
@@ -50,26 +50,26 @@ public class SuperList<E> {
         }
         else if (position == 0) //if position is at the beginning
         {
-            root.setPrev(temp); //temp precedes current root
-            temp.setNext(root); //current root follows temp
+            root.setPrev(temp); //temp precedes curr root
+            temp.setNext(root); //curr root follows temp
             root = temp; //temp is now the root
             size++; //size increases
         }
         else //if position is in the middle
         {
-            ListNode<E> current = root; //start at first node
+            Listprev<E> curr = root; //start at first prev
             for (int x = 0; x < position; x++)
             {
-                current = current.getNext(); //move to next node
+                curr = curr.getNext(); //move to next prev
             }
             try
             {
-                ListNode<E> currentprev = current.getPrev(); //saves current preceding node
-                currentprev.setNext(temp); //temp follows current preceding node
-                temp.setPrev(currentprev); //temp is preceded by current's previous
-                current.setPrev(temp); //temp precedes current node
-                temp.setNext(current); //current node follows temp
-                //value following current is unchanged
+                Listprev<E> currprev = curr.getPrev(); //saves curr preceding prev
+                currprev.setNext(temp); //temp follows curr preceding prev
+                temp.setPrev(currprev); //temp is preceded by curr's previous
+                curr.setPrev(temp); //temp precedes curr prev
+                temp.setNext(curr); //curr prev follows temp
+                //val following curr is unchanged
             }
             catch(Exception e)
             {
@@ -85,59 +85,59 @@ public class SuperList<E> {
         }
         if (size == 1)
         {
-            E temp = root.getValue(); // save value
+            E temp = root.getValue(); // save val
             clear(); //clear list
             return temp;
         }
         else if (position == size - 1) //if position is at the end
         {
-            E temp = end.getValue(); //saves value of end
-            end = end.getPrev(); //end is now the previous node
+            E temp = end.getValue(); //saves val of end
+            end = end.getPrev(); //end is now the previous prev
             end.setNext(null); //end does not have a next
             size--; //size decreases
-            return temp; //returns value of end
+            return temp; //returns val of end
         }
         else if (position == 0) //if position is at the beginning
         {
-            E temp = root.getValue(); //saves value of root
-            root = root.getNext(); //root is now the next node
+            E temp = root.getValue(); //saves val of root
+            root = root.getNext(); //root is now the next prev
             root.setPrev(null); //root does not have a previous
             size--; //size decreases
-            return temp; //returns value of root
+            return temp; //returns val of root
         }
         else //if position is in the middle
         {
-            ListNode<E> current = root; //start at first node
-            for (int x = 0; x < position; x++) //find value at intended position
+            Listprev<E> curr = root; //start at first prev
+            for (int x = 0; x < position; x++) //find val at intended position
             {
-                current = current.getNext(); //move to next node
+                curr = curr.getNext(); //move to next prev
             }
-            E temp = current.getValue(); //saves value of current node
-            current.getPrev().setNext(current.getNext()); //node before current follows node after current
-            current.getNext().setPrev(current.getPrev()); //node after current precedes node before current
+            E temp = curr.getValue(); //saves val of curr prev
+            curr.getPrev().setNext(curr.getNext()); //prev before curr follows prev after curr
+            curr.getNext().setPrev(curr.getPrev()); //prev after curr precedes prev before curr
             size--; //size decreases
-            return temp; //returns value of current node
+            return temp; //returns val of curr prev
         }
     }
     public E pop()
     {
-        E temp = end.getValue(); //saves value of end
+        E temp = end.getValue(); //saves val of end
         if (temp == null) //if list is empty
         {
             throw new EmptyStackException();
         }
         
         remove(size - 1); //removes end
-        return temp; //returns value of end
+        return temp; //returns val of end
     }
     public E poll()
     {
         if(size==0)
             return null;
 
-        E temp = root.getValue(); //saves value of root
+        E temp = root.getValue(); //saves val of root
         remove(0); //removes root
-        return temp; //returns value of root
+        return temp; //returns val of root
 
     }
     public E stackPeek()
@@ -148,7 +148,7 @@ public class SuperList<E> {
         }
         else
         {
-            return end.getValue(); //returns value of end
+            return end.getValue(); //returns val of end
         }
     }
     public E queuePeek()
@@ -159,7 +159,7 @@ public class SuperList<E> {
         }
         else
         {
-            return root.getValue(); //returns value of root
+            return root.getValue(); //returns val of root
         }
     }
     public void clear()
@@ -168,7 +168,7 @@ public class SuperList<E> {
         end = null;
         size = 0;
     }
-    public void set(int position, E value)
+    public void set(int position, E val)
     {
         if (position < 0 || position >= size) //if position is out of bounds
         {
@@ -176,12 +176,12 @@ public class SuperList<E> {
         }
         else //if position is in bounds
         {
-            ListNode<E> temp = root; //start at first node
-            for (int x = 0; x < position; x++) //find value at intended position
+            Listprev<E> temp = root; //start at first prev
+            for (int x = 0; x < position; x++) //find val at intended position
             {
-                temp = temp.getNext(); //next node
+                temp = temp.getNext(); //next prev
             }
-            temp.setValue(value);
+            temp.setval(val);
         }
     }
     public E get(int position)
@@ -192,24 +192,24 @@ public class SuperList<E> {
         }
         else //if position is in bounds
         {
-            ListNode<E> temp = root; //start at first node
-            for (int x = 0; x < position; x++) //find value at intended position
+            Listprev<E> temp = root; //start at first prev
+            for (int x = 0; x < position; x++) //find val at intended position
             {
-                temp = temp.getNext(); //next node
+                temp = temp.getNext(); //next prev
             }
             return temp.getValue();
         }
     }
-    public boolean contains(E value)
+    public boolean contains(E val)
     {
-        ListNode<E> temp = root; //start at first node
-        for (int x = 0; x < size; x++) //find value at intended position
+        Listprev<E> temp = root; //start at first prev
+        for (int x = 0; x < size; x++) //find val at intended position
         {
-            if (temp.getValue().equals(value) || temp.getValue() == value) //if value is found
+            if (temp.getValue().equals(val) || temp.getValue() == val) //if val is found
             {
                 return true;
             }
-            temp = temp.getNext(); //next node
+            temp = temp.getNext(); //next prev
         }
         return false;
     }
@@ -220,7 +220,7 @@ public class SuperList<E> {
     public String toString()
     {
         String output = "[";
-        ListNode<E> temp=root;
+        Listprev<E> temp=root;
         for (int x = 0; x < size; x++)
         {
             if (temp != null)
@@ -232,40 +232,40 @@ public class SuperList<E> {
         output += "]";
         return output;
     }
-    public class ListNode<E>{
-        private E value;
-        private ListNode<E> next, prev;
-        public ListNode(E value)
+    public class Listprev<E>{
+        private E val;
+        private Listprev<E> next, prev;
+        public Listprev(E val)
         {
-            this.value = value;
+            this.val = val;
         }
         public E getValue()
         {
-            return value;
+            return val;
         }
-        public void setValue(E value)
+        public void setval(E val)
         {
-            this.value = value;
+            this.val = val;
         }
-        public ListNode<E> getNext()
+        public Listprev<E> getNext()
         {
             return next;
         }
-        public void setNext(ListNode<E> next)
+        public void setNext(Listprev<E> next)
         {
             this.next = next;
         }
-        public ListNode<E> getPrev()
+        public Listprev<E> getPrev()
         {
             return prev;
         }
-        public void setPrev(ListNode<E> prev)
+        public void setPrev(Listprev<E> prev)
         {
             this.prev = prev;
         }
         public String toString()
         {
-            return value.toString();
+            return val.toString();
         }
         public boolean hasPrev()
         {

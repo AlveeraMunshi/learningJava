@@ -27,11 +27,11 @@ public class GUITask implements ActionListener{
     String[] outlineColorNames = {"No Color", "Red", "Blue", "Random Color"};
     //1 int arrays: font sizes
     int[] fontSizesInt = {10, 18, 24};
-    int currentSize = fontSizesInt[0];
+    int currSize = fontSizesInt[0];
     //4 Color arrays: border color, text color, outline color, text background color
     Color[] colors = {Color.RED, Color.BLUE, Color.BLACK, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.PINK, Color.CYAN, Color.MAGENTA, Color.WHITE, Color.GRAY, Color.LIGHT_GRAY, Color.DARK_GRAY, Color.BLACK};
     ArrayList<Font> fontList = new ArrayList<Font>();
-    Font currentFont = new Font("Arial", Font.PLAIN, 18);
+    Font currFont = new Font("Arial", Font.PLAIN, 18);
     public GUITask()
     {
         try
@@ -154,28 +154,28 @@ public class GUITask implements ActionListener{
        
 
     }
-    public void updateFont(Font currentFont)
+    public void updateFont(Font currFont)
     {
-        Font buttonFont = new Font(currentFont.getName(), Font.PLAIN, 18);
-        textArea.setFont(currentFont);
+        Font buttonFont = new Font(currFont.getName(), Font.PLAIN, 18);
+        textArea.setFont(currFont);
         north.setFont(buttonFont);
         south.setFont(buttonFont);
         east.setFont(buttonFont);
         west.setFont(buttonFont);
     }
-    public void updateTextColor(Color currentColor)
+    public void updateTextColor(Color currColor)
     {
-        textArea.setForeground(currentColor);
-        north.setForeground(currentColor);
-        south.setForeground(currentColor);
-        east.setForeground(currentColor);
-        west.setForeground(currentColor);
-        font.setForeground(currentColor);
-        size.setForeground(currentColor);
-        color.setForeground(currentColor);
-        bgcolor.setForeground(currentColor);
-        olcolor.setForeground(currentColor);
-        reset.setForeground(currentColor);
+        textArea.setForeground(currColor);
+        north.setForeground(currColor);
+        south.setForeground(currColor);
+        east.setForeground(currColor);
+        west.setForeground(currColor);
+        font.setForeground(currColor);
+        size.setForeground(currColor);
+        color.setForeground(currColor);
+        bgcolor.setForeground(currColor);
+        olcolor.setForeground(currColor);
+        reset.setForeground(currColor);
     }
     public static void main (String[] args)
     {
@@ -252,8 +252,8 @@ public class GUITask implements ActionListener{
         }
         else if (e.getSource() == reset)
         {
-            currentFont = new Font("Arial", Font.PLAIN, 18);
-            updateFont(currentFont);
+            currFont = new Font("Arial", Font.PLAIN, 18);
+            updateFont(currFont);
             north.setBorderPainted(false);
             south.setBorderPainted(false);
             east.setBorderPainted(false);
@@ -272,39 +272,53 @@ public class GUITask implements ActionListener{
             kingPanel.add(babyPanel);
             kingPanel.add(menuBar);
             frame.add(kingPanel, BorderLayout.NORTH);
+
+            System.out.print("North");
+            frame.remove(kingPanel);
+            kingPanel.remove(babyPanel);
+            kingPanel.remove(menuBar);
+            kLayout = new GridLayout(1, 2);
+            bLayout = new GridLayout(1,4);
+            mLayout = new GridLayout(1,6);
+            babyPanel.setLayout(bLayout);
+            kingPanel.setLayout(kLayout);
+            menuBar.setLayout(mLayout);
+            kingPanel.add(babyPanel, BorderLayout.NORTH);
+            kingPanel.add(menuBar, BorderLayout.NORTH);
+            frame.add(kingPanel, BorderLayout.NORTH);
         }
         else if (e.getSource() == fontOptions.get(0))
         {
-            currentFont = new Font(fontNames[0], currentFont.getStyle(), currentSize);
-            updateFont(currentFont);
+            currFont = new Font(fontNames[0], currFont.getStyle(), currSize);
+            updateFont(currFont);
         }
         else if (e.getSource() == fontOptions.get(1))
         {
-            currentFont = new Font(fontNames[1], currentFont.getStyle(), currentSize);
-            updateFont(currentFont);
+            currFont = new Font(fontNames[1], currFont.getStyle(), currSize);
+            updateFont(currFont);
         }
         else if (e.getSource() == fontOptions.get(2))
         {
-            currentFont = new Font(fontNames[2], currentFont.getStyle(), currentSize);
-            updateFont(currentFont);
+            currFont = new Font(fontNames[2], currFont.getStyle(), currSize);
+            updateFont(currFont);
         }
         else if (e.getSource() == fontSizes.get(0))
         {
-            currentSize = fontSizesInt[0];
-            currentFont = new Font(currentFont.getName(), currentFont.getStyle(), currentSize);
-            updateFont(currentFont);
+            currSize = fontSizesInt[0];
+            currFont = new Font(currFont.getName(), currFont.getStyle(), currSize);
+            updateFont(currFont);
         }
         else if (e.getSource() == fontSizes.get(1))
         {
-            currentSize = fontSizesInt[1];
-            currentFont = new Font(currentFont.getName(), currentFont.getStyle(), currentSize);
-            updateFont(currentFont);
+            currSize = fontSizesInt[1];
+            currFont = new Font(currFont.getName(), currFont.getStyle(), currSize);
+            updateFont(currFont);
         }
         else if (e.getSource() == fontSizes.get(2))
         {
-            currentSize = fontSizesInt[2];
-            currentFont = new Font(currentFont.getName(), currentFont.getStyle(), currentSize);
-            updateFont(currentFont);
+            currSize = fontSizesInt[2];
+            currFont = new Font(currFont.getName(), currFont.getStyle(), currSize);
+            updateFont(currFont);
         }
         else if (e.getSource() == textColors.get(0))
         {

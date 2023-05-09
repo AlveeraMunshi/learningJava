@@ -317,7 +317,7 @@ public class Minesweeper extends JFrame implements MouseListener
             for(int c = 0; c < buttons[0].length; c++)
             {
                 ImageIcon icon = (ImageIcon) buttons[r][c].getIcon();
-                //buttons[r][c].setDisabledIcon(icon); //set disabled icon to current icon
+                //buttons[r][c].setDisabledIcon(icon); //set disabled icon to curr icon
                 //buttons[r][c].setText("" + buttons[r][c].getClientProperty("mineVal"));
                 if (buttons[r][c].getClientProperty("mineVal").equals(-1))
                 {

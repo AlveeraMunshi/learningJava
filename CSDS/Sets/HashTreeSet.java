@@ -11,7 +11,7 @@ public class HashTreeSet {
         for (int x = 0; x < s; x++) 
         {
             HashSet<Integer> set = new HashSet<Integer>();
-            while (set.size() != 10) //10 values per set
+            while (set.size() != 10) //10 vals per set
             {
                 set.add((int)(Math.random()*20)+1); //random 1-20
             }
@@ -58,7 +58,7 @@ public class HashTreeSet {
         }
         System.out.println("Even Union Total: " + eu);
     }
-    //only common values between two sets
+    //only common vals between two sets
     public Set<Integer> intersection(Set<Integer> s1, Set<Integer> s2) {
         Set<Integer> s3 = new HashSet<Integer>();
         Iterator<Integer> it = s1.iterator(); //iterator for s1
@@ -70,7 +70,7 @@ public class HashTreeSet {
         }
         return s3;
     }
-    //all unique values from both sets
+    //all unique vals from both sets
     public Set<Integer> union(Set<Integer> s1, Set<Integer> s2) {
         Set<Integer> s3 = new HashSet<Integer>();
         Iterator<Integer> it = s1.iterator(); //iterator for s1
@@ -85,7 +85,7 @@ public class HashTreeSet {
         }
         return s3;
     }
-    //all common even values between two sets
+    //all common even vals between two sets
     public Set<Integer> evenIntersection(Set<Integer> s1, Set<Integer> s2)
     {
         Set<Integer> s3 = new HashSet<Integer>();
@@ -98,7 +98,7 @@ public class HashTreeSet {
         }
         return s3;
     }
-    //all unique even values between two sets
+    //all unique even vals between two sets
     public Set<Integer> evenUnion(Set<Integer> s1, Set<Integer> s2)
     {
         Set<Integer> s3 = new HashSet<Integer>();

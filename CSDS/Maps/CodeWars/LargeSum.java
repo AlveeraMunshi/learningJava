@@ -8,7 +8,7 @@ public class LargeSum {
       {
         sum+=Long.parseLong(s.substring(0,12)); //parse 50 digits
       }
-      return String.valueOf(sum).substring(0,10);
+      return String.valOf(sum).substring(0,10);
     }
 
 

@@ -38,7 +38,7 @@ public class Reducer {
 
         if (remainder == 0)
         {
-            return String.valueOf(whole);
+            return String.valOf(whole);
         }
 
         //simplify remainder
@@ -48,11 +48,11 @@ public class Reducer {
         
         if (whole == 0)
         {
-            return String.valueOf(remainder + "/" + d);
+            return String.valOf(remainder + "/" + d);
         }
         else
         {
-            return String.valueOf(whole + " " + remainder + "/" + d);
+            return String.valOf(whole + " " + remainder + "/" + d);
         }
 
     }

@@ -66,7 +66,7 @@ public class SuperListSimpleRunner
  
             /* Move elements of arr[0..i-1], that are
                greater than key, to one position ahead
-               of their current position */
+               of their curr position */
             while (j >= 0 && list.get(j) < key) {
                 list.add(j + 1, list.remove(j));
                 j--;
@@ -112,7 +112,7 @@ public class SuperListSimpleRunner
  
             /* Move elements of arr[0..i-1], that are
                greater than key, to one position ahead
-               of their current position */
+               of their curr position */
             while (j >= 0 && sentence.get(j).compareTo(key) > 0) {
                 sentence.add(j + 1, sentence.remove(j));
                 j--;

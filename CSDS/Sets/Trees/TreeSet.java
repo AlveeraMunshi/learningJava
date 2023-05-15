@@ -2,7 +2,8 @@ package Sets.Trees;
 
 import javax.swing.tree.TreeNode;
 
-public class TreeSet<E extends Comparable<E>> {
+public class TreeSet<E extends Comparable<E>> 
+{
     TreeNode<E> root;
     int size;
     String output;

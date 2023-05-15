@@ -207,7 +207,7 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
         }
     }
     @Override
-    public void adjustmentvalChanged(AdjustmentEvent e) {
+    public void adjustmentValueChanged(AdjustmentEvent e) {
         // TODO Auto-generated method stub
         tempo = tempoBar.getValue();
     }
@@ -402,7 +402,7 @@ public class MusicBox extends JFrame implements Runnable, ActionListener, Adjust
                 String[] temp = line.split(" ");
                 tempo = Integer.parseInt(temp[0]);
                 int cs = Integer.parseInt(temp[1]);
-                tempoBar.setval(tempo);
+                tempoBar.setValue(tempo);
                 createButtons(37, cs);
                 song = new Character[37][cs];
                 int r = 0;

@@ -39,6 +39,9 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 	JFileChooser chooser;
 	BufferedImage loadedImg;
 
+	boolean firstClick = true;
+	int initX, initY;
+
 	public PaintProgram()
 	{
 		//menubar
@@ -48,6 +51,7 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 		frame=new JFrame("The Best Paint Program Ever Constructed - by me....");
 		frame.add(this);
 		frame.setSize(1400,800);
+		frame.setBackground(bgColor);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
@@ -184,48 +188,53 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 
 		//draw old lines
 		//Iterator it = lines.iterator(); //go through stack without removing values
-		Iterator it = shapes.iterator(); //go through stack without removing values
-		while (it.hasNext()) //while there are still lines to draw
+		g.setColor(bgColor);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		if(shapes.size()>0)
 		{
-			Object o = it.next();
-			if (o instanceof BufferedImage)
+			Iterator it = shapes.iterator(); //go through stack without removing values
+			while (it.hasNext()) //while there are still lines to draw
 			{
-				//draw loaded image
-				if (loadedImg != null)
+				Object o = it.next();
+				if (o instanceof BufferedImage) //o is a Buffered Image
 				{
-					g.drawImage(loadedImg, 0, 0, null);
+					//draw loaded image
+					if (loadedImg != null)
+					{
+						g.drawImage(loadedImg, 0, 0, null);
+					}
 				}
-			}
-			else if (o instanceof Rectangle)
-			{
-				Rectangle r = (Rectangle)o;
-				g2.setStroke(new BasicStroke(r.getPenWidth(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-				g.setColor(r.getColor());
-				g2.draw(r.getRect());
-			}
-			else if (o instanceof Oval)
-			{
-				Oval o1 = (Oval)o;
-				g2.setStroke(new BasicStroke(o1.getPenWidth(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-				g.setColor(o1.getColor());
-				g2.draw(o1.getOval());
-			}
-			else if (o instanceof ArrayList<?>)
-			{
-				ArrayList<Point> p = (ArrayList<Point>)(it.next());
-				g2.setStroke(new BasicStroke(p.get(0).getWidth(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-				//go through each point in the line
-				for (int i=0;i<p.size()-1;i++)
+				else if (o instanceof Rectangle) //o is a Rectangle
 				{
-					g.setColor(p.get(i).getColor());
-					Point p1 = p.get(i);
-					Point p2 = p.get(i+1);
-					g2.drawLine(p1.getX(),p1.getY(),p2.getX(),p2.getY());
+					Rectangle r = (Rectangle)o;
+					g2.setStroke(new BasicStroke(r.getPenWidth(), BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
+					g.setColor(r.getColor());
+					g2.draw(r.getRect());
+				}
+				else if (o instanceof Oval) //o is an Oval
+				{
+					Oval o1 = (Oval)o;
+					g2.setStroke(new BasicStroke(o1.getPenWidth(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+					g.setColor(o1.getColor());
+					g2.draw(o1.getOval());
+				}
+				else if (o instanceof ArrayList<?>) //o is an ArrayList
+				{
+					ArrayList<Point> p = (ArrayList<Point>)(o);
+					g2.setStroke(new BasicStroke(p.get(0).getWidth(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+					//go through each point in the line
+					for (int i=0;i<p.size()-1;i++)
+					{
+						g.setColor(p.get(i).getColor());
+						Point p1 = p.get(i);
+						Point p2 = p.get(i+1);
+						g2.drawLine(p1.getX(),p1.getY(),p2.getX(),p2.getY());
+					}
 				}
 			}
 		}
 		//draw new line
-		if (draw)
+		if (draw && points.size() > 0)
 		{
 			g2.setStroke(new BasicStroke(points.get(0).getWidth(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 			g.setColor(points.get(0).getColor());
@@ -236,6 +245,19 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 				Point p2 = points.get(i+1);
 				g2.drawLine(p1.getX(),p1.getY(),p2.getX(),p2.getY());
 			}
+		}
+		//draw new rect
+		if (drawRect && points.size() > 0)
+		{
+			g2.setStroke(new BasicStroke(points.get(0).getWidth(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+			g.setColor(points.get(0).getColor());
+			Point p1 = points.get(0);
+			Point p2 = points.get(points.size()-1);
+			int x = Math.min(p1.getX(), p2.getX());
+			int y = Math.min(p1.getY(), p2.getY());
+			int width = Math.abs(p1.getX()-p2.getX());
+			int height = Math.abs(p1.getY()-p2.getY());
+			g2.drawRect(x, y, width, height);
 		}
 	}
 	//used implemented methods
@@ -341,9 +363,8 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 		{
 			drawRect = false;
 			drawOval = false;
-			draw = false;
+			draw = true;
 			erase = true;
-			//currColor = bgColor;
 		}
 		else if (e.getSource() == rectButton)
 		{
@@ -351,7 +372,6 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 			drawOval = false;
 			draw = false;
 			erase = false;
-			//currColor = shapes.peek().getColor();
 		}
 		else if (e.getSource() == ovalButton)
 		{
@@ -359,7 +379,6 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 			drawOval = true;
 			draw = false;
 			erase = false;
-			//currColor = Color.BLACK;
 		}
 		else if (e.getSource() == lineButton)
 		{
@@ -367,7 +386,6 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 			drawOval = false;
 			draw = true;
 			erase = false;
-			//currColor = Color.BLACK;
 		}
 		else
 		{
@@ -377,20 +395,84 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 	}
 	public void mouseReleased(MouseEvent e)
 	{
-		draw = false;
-		if (points.size() > 0)
+		//draw = false;
+		if(draw)
 		{
-			//lines.push(points);
-			shapes.push(points);
-			points=new ArrayList<Point>();
+			if (points.size() > 0)
+			{
+				//lines.push(points);
+				shapes.push(points);
+				points=new ArrayList<Point>();
+			}
 		}
+		firstClick = true;
+		repaint();
 	}
 	public void mouseDragged(MouseEvent e)
 	{
 		Color c = currColor;
-		if (erase)
-			c = bgColor;
-		points.add(new Point(e.getX(),e.getY(),c,currWidth));
+		if (draw)
+		{
+			if (erase)
+				c = bgColor;
+			points.add(new Point(e.getX(),e.getY(),c,currWidth));
+		}
+		else if (drawRect)
+		{
+			if (firstClick) //if user just started drawing a rectangle
+			{
+				initX = e.getX();
+				initY = e.getY();
+				firstClick = false;
+				shapes.push(new Rectangle(initX, initY, c, currWidth, 0, 0));
+			}
+			else //if user is manipulating rectangle
+			{
+				Rectangle rect = (Rectangle)shapes.peek();
+				//get end coordinates of current mouse position
+				int endX = e.getX();
+				int endY = e.getY();
+				//calculate width and height of rectangle
+				int width = Math.abs(endX-initX);
+				int height = Math.abs(endY-initY);
+				//set width and height of rectangle
+				rect.setWidth(width);
+				rect.setHeight(height);
+				//flip x and y if user drags to the left or up
+				if (e.getX() < initX)
+					rect.setX(e.getX());
+				if (e.getY() < initY)
+					rect.setY(e.getY());
+			}
+		}
+		else if (drawOval)
+		{
+			if (firstClick) //if user just started drawing a oval
+			{
+				initX = e.getX();
+				initY = e.getY();
+				firstClick = false;
+				shapes.push(new Oval(initX, initY, c, currWidth, 0, 0));
+			}
+			else //if user is manipulating oval
+			{
+				Oval oval = (Oval)shapes.peek();
+				//get end coordinates of current mouse position
+				int endX = e.getX();
+				int endY = e.getY();
+				//calculate width and height of oval
+				int width = Math.abs(endX-initX);
+				int height = Math.abs(endY-initY);
+				//set width and height of oval
+				oval.setWidth(width);
+				oval.setHeight(height);
+				//flip x and y if user drags to the left or up
+				if (e.getX() < initX)
+					oval.setX(e.getX());
+				if (e.getY() < initY)
+					oval.setY(e.getY());
+			}
+		}
 		repaint();
 	}
 	public void adjustmentValueChanged(AdjustmentEvent e)

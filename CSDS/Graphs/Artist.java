@@ -12,7 +12,7 @@ public class Artist {
     {
         return name;
     }
-    public int getId()
+    public int hashCode()
     {
         return id;
     }
@@ -25,6 +25,6 @@ public class Artist {
         if (o == null || !(o instanceof Artist))
             return false;
         Artist a = (Artist)o;
-        return a.id == this.id;
+        return a.hashCode() == this.hashCode();
     }
 }

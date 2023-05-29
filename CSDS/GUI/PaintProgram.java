@@ -18,10 +18,13 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 	ArrayList<Point> points = new ArrayList<Point>(); //points in a line
 	//Stack<ArrayList<Point>> lines = new Stack<ArrayList<Point>>(); //lines that exist
 	Stack<Object> shapes = new Stack<Object>(); //shapes that exist
+	Stack<Object> undone = new Stack<Object>(); //undo stack
 	Shape currShape; //current shape
 	boolean draw = true; //whether or not the user is drawing a free line
 	boolean drawRect = false; //whether or not the user is drawing a rectangle
 	boolean drawOval = false; //whether or not the user is drawing an oval
+	boolean drawTriangle = false; //whether or not the user is drawing a triangle
+	boolean perfect = false; //whether or not the user is drawing a straight/equilateral
 	int currWidth=2; //width of line
 	Color currColor = Color.BLACK; //color of line
 	Color bgColor = Color.WHITE; //background color
@@ -34,7 +37,7 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 	JMenuItem[] colorButtons;
 	JColorChooser colorChooser;
 	JMenuItem save, load, clear, exit, undo, redo;
-	JButton rectButton, ovalButton, lineButton, eraseButton;
+	JButton rectButton, ovalButton, lineButton, triangleButton, eraseButton, perfectButton;
 	ImageIcon saveImg, loadImg, clearImg, exitImg, undoImg, redoImg, eraseImg, rectImg, ovalImg, lineImg;
 	JFileChooser chooser;
 	BufferedImage loadedImg;
@@ -142,8 +145,12 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 		ovalButton.addActionListener(this);
 		lineButton = new JButton("Line");
 		lineButton.addActionListener(this);
+		triangleButton = new JButton("Triangle");
+		triangleButton.addActionListener(this);
 		eraseButton = new JButton("Erase");
 		eraseButton.addActionListener(this);
+		perfectButton = new JButton("Perfect");
+		perfectButton.addActionListener(this);
 		//buttons images
 		rectImg = new ImageIcon("/Users/alveeramunshi/Documents/GitHub/learningJava/CSDS/GUI/rectImg.png");
 		rectImg = new ImageIcon(rectImg.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
@@ -175,6 +182,8 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 		menuBar.add(rectButton);
 		menuBar.add(ovalButton);
 		menuBar.add(lineButton);
+		menuBar.add(triangleButton);
+		menuBar.add(perfectButton);
 		menuBar.add(eraseButton);
 		menuBar.add(width);
 		frame.setJMenuBar(menuBar);
@@ -230,6 +239,12 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 						Point p2 = p.get(i+1);
 						g2.drawLine(p1.getX(),p1.getY(),p2.getX(),p2.getY());
 					}
+				}
+				else if(o instanceof Triangle) {
+					Triangle t = (Triangle)o;
+					g2.setStroke(new BasicStroke(t.getPenWidth(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+					g.setColor(t.getColor());
+					g2.draw(t.getTriangle());
 				}
 			}
 		}
@@ -335,34 +350,21 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 		}
 		else if (e.getSource() == undo)
 		{
-			/*if (lines.size() > 0)
-			{
-				lines.pop();
-				repaint();
-			}*/
-			if (shapes.size() > 0)
-			{
-				shapes.pop();
-				repaint();
-			}
+			if (shapes != null && shapes.size() > 0)
+				undone.push(shapes.pop());
+			repaint();
 		}
 		else if (e.getSource() == redo)
 		{
-			/*if (lines.size() > 0)
-			{
-				lines.pop();
-				repaint();
-			}*/
-			if (shapes.size() > 0)
-			{
-				shapes.pop();
-				repaint();
-			}
+			if (undone != null && undone.size() > 0)
+				shapes.push(undone.pop());
+			repaint();
 		}
 		else if (e.getSource() == eraseButton)
 		{
 			drawRect = false;
 			drawOval = false;
+			drawTriangle = false;
 			draw = true;
 			erase = true;
 		}
@@ -370,6 +372,7 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 		{
 			drawRect = true;
 			drawOval = false;
+			drawTriangle = false;
 			draw = false;
 			erase = false;
 		}
@@ -377,6 +380,7 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 		{
 			drawRect = false;
 			drawOval = true;
+			drawTriangle = false;
 			draw = false;
 			erase = false;
 		}
@@ -384,8 +388,21 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 		{
 			drawRect = false;
 			drawOval = false;
+			drawTriangle = false;
 			draw = true;
 			erase = false;
+		}
+		else if (e.getSource() == triangleButton)
+		{
+			drawRect = false;
+			drawOval = false;
+			drawTriangle = true;
+			draw = false;
+			erase = false;
+		}
+		else if (e.getSource() == perfectButton)
+		{
+			perfect = !perfect;
 		}
 		else
 		{
@@ -415,7 +432,20 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 		{
 			if (erase)
 				c = bgColor;
-			points.add(new Point(e.getX(),e.getY(),c,currWidth));
+			if (perfect && firstClick)
+				points.add(new Point(e.getX(),e.getY(),c,currWidth));
+			else if (perfect)
+			{
+				if (points.size() > 1)
+					points.remove(points.size()-1);
+				points.add(new Point(e.getX(),e.getY(),c,currWidth));
+			}
+			else
+				points.add(new Point(e.getX(),e.getY(),c,currWidth));
+			if (firstClick) //if user just started drawing a line
+			{
+				firstClick = false;
+			}
 		}
 		else if (drawRect)
 		{
@@ -471,6 +501,36 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 					oval.setX(e.getX());
 				if (e.getY() < initY)
 					oval.setY(e.getY());
+			}
+		}
+		else if (drawTriangle)
+		{
+			if (firstClick) //if user just started drawing a triangle
+			{
+				initX = e.getX();
+				initY = e.getY();
+				firstClick = false;
+				shapes.push(new Triangle(initX, initY, c, currWidth, 2, 2));
+			}
+			else //if user is manipulating triangle
+			{
+				Triangle triangle = (Triangle)shapes.peek();
+				//get end coordinates of current mouse position
+				int endX = e.getX();
+				int endY = e.getY();
+				//calculate width and height of triangle
+				int width = endX-initX;
+				int height = endY-initY;
+				//set width and height of triangle
+				triangle.setWidth(width);
+				triangle.setHeight(height);
+				if (perfect)
+				{
+					if (height < 0)
+						triangle.setHeight((int)(-Math.abs(width)*Math.sqrt(3)/2));
+					else
+						triangle.setHeight((int)(Math.abs(width)*Math.sqrt(3)/2));
+				}
 			}
 		}
 		repaint();
@@ -609,16 +669,18 @@ public class PaintProgram extends JPanel implements MouseListener,MouseMotionLis
 			return new Ellipse2D.Double(getX(),getY(),getWidth(),getHeight());
 		}
 	}
-	//line class
-	/*public class Line extends Shape
+	//triangle class
+	public class Triangle extends Shape
 	{
-		public Line(int x,int y, Color color, int penWidth, int width, int height)
+		public Triangle(int x,int y, Color color, int penWidth, int width, int height)
 		{
 			super(x,y,color,penWidth,width,height);
 		}
-		public Line2D.Double getLine()
+		public Polygon getTriangle()
 		{
-			return new Line2D.Double(getX(),getY(),getWidth(),getHeight());
+			int[] xPoints = {getX(), getX()+getWidth()/2, getX()+getWidth()};
+			int[] yPoints = {getY(), getY()+getHeight(), getY()};
+			return new Polygon(xPoints, yPoints, 3);
 		}
-	}*/
+	}
 }

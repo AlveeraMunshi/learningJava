@@ -2,13 +2,13 @@ package Graphs;
 
 public class AEdge {
     Artist artist;
-    Artist variable;
+    Artist similar;
     int id;
-    public AEdge(Artist artist, Artist variable)
+    public AEdge(Artist artist, Artist similar)
     {
         this.artist = artist;
-        this.variable = variable;
-        this.id = artist.hashCode() + variable.hashCode();
+        this.similar = similar;
+        this.id = artist.hashCode() + similar.hashCode();
     }
     public Artist getArtist()
     {
@@ -16,14 +16,21 @@ public class AEdge {
     }
     public Artist getVariable()
     {
-        return variable;
+        return similar;
     }
-    public int getId()
+    public int hashCode()
     {
         return id;
     }
     public String toString()
     {
-        return artist + " is similar to " + variable;
+        return artist + " is similar to " + similar;
+    }
+    public boolean equals(Object o)
+    {
+        if (o == null || !(o instanceof AEdge))
+            return false;
+        AEdge e = (AEdge)o;
+        return e.hashCode() == this.hashCode();
     }
 }

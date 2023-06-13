@@ -2,11 +2,11 @@ package Graphs;
 
 public class Artist {
     String name;
-    int id;
+    int hashCode;
     public Artist(String name)
     {
         this.name = name;
-        this.id = name.hashCode();
+        this.hashCode = name.hashCode();
     }
     public String getName()
     {
@@ -14,7 +14,7 @@ public class Artist {
     }
     public int hashCode()
     {
-        return id;
+        return hashCode;
     }
     public String toString()
     {
@@ -22,7 +22,7 @@ public class Artist {
     }
     public boolean equals(Object o)
     {
-        if (o == null || !(o instanceof Artist))
+        if (o == null || getClass() != o.getClass())
             return false;
         Artist a = (Artist)o;
         return a.hashCode() == this.hashCode();

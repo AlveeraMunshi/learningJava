@@ -67,22 +67,31 @@ public class RisingTides {
      * @param height of the water
      * @return boolean[][], where flooded cells are true, otherwise false
      */
-    public boolean[][] floodedRegionsIn(double height) {
-        
+    public boolean[][] floodedRegionsIn(double height) 
+    {
+        // Initialize a boolean 2D array, we will call this array the resulting array.
         boolean[][] result = new boolean[terrain.length][terrain[0].length]; // array to store the flooded cells
+        // Initialize an ArrayList of GridLocations.
         ArrayList<GridLocation> flooded = new ArrayList<GridLocation>(); // arraylist to store the flooded cells
+        //System.out.println("Sources: " + sources.length);
         for (int i = 0; i < sources.length; i++) // iterate through the sources
         {
             flooded.add(sources[i]); // add the source to the flooded arraylist
             result[sources[i].row][sources[i].col] = true; // set the source to true in the result array
         }
+        int[][] offset = {{-1, 0}, {0, -1}, {0, 1}, {1, 0}}; // 4 cardinal directions
         while (!flooded.isEmpty())
         {
             GridLocation current = flooded.remove(0); // remove the first element from the flooded arraylist
-            if () // if the cell above is in bounds, less than the water height
+            //check all cardinal neighbors
+            for (int o = 0; o < offset.length; o++) // check adjacent cells
             {
-                flooded.add(new GridLocation(current.row - 1, current.col)); // add the cell above to the flooded arraylist
-                result[current.row - 1][current.col] = true; // set the cell above to true in the result array
+                int newRow = current.row+offset[o][0], newCol = current.col+offset[o][1];
+                if (newRow < terrain.length && newRow >= 0 && newCol < terrain[0].length && newCol >= 0 && !result[newRow][newCol] && terrain[newRow][newCol] <= height) //if position in bounds, not already checked, and should be flooded
+                {
+                    flooded.add(new GridLocation(newRow, newCol)); // add to list to check its adjacents
+                    result[newRow][newCol] = true; // mark as flooded
+                }
             }
         }
         return result; // substitute this line. It is provided so that the code compiles.
@@ -95,10 +104,14 @@ public class RisingTides {
      * @param cell location 
      * @return boolean, true if cell is flooded, otherwise false
      */
-    public boolean isFlooded(double height, GridLocation cell) {
-        
-        /* WRITE YOUR CODE BELOW */
-        return false; // substitute this line. It is provided so that the code compiles.
+    public boolean isFlooded(double height, GridLocation cell) 
+    {
+        boolean[][] flooded = floodedRegionsIn(height); // get the flooded regions
+        if (cell.row < 0 || cell.row >= flooded.length || cell.col < 0 || cell.col >= flooded[0].length) // if the cell is out of bounds
+        {
+            return false; // return false
+        }
+        return flooded[cell.row][cell.col]; // return whether or not its flooded
     }
 
     /**
@@ -116,7 +129,7 @@ public class RisingTides {
     public double heightAboveWater(double height, GridLocation cell) {
         
         /* WRITE YOUR CODE BELOW */
-        return -1; // substitute this line. It is provided so that the code compiles.
+        return terrain[cell.row][cell.col] - height; // chosen cell height - water height
     }
 
     /**
@@ -128,7 +141,21 @@ public class RisingTides {
     public int totalVisibleLand(double height) {
         
         /* WRITE YOUR CODE BELOW */
-        return -1; // substitute this line. It is provided so that the code compiles.
+        
+        boolean[][] flooded = floodedRegionsIn(height); // get the flooded regions
+        int sum = 0; //counts not underwater cells
+        for (int r = 0; r < flooded.length; r++) // iterate through rows
+        {
+            for (int c = 0; c < flooded[0].length; c++) // iterate through columns
+            {
+                if (!flooded[r][c]) // if not flooded
+                {
+                    sum++; // count as not underwater cell
+                }
+            }
+        }
+        
+        return sum; // returns # of not underwater cells
     } 
 
 
@@ -146,7 +173,7 @@ public class RisingTides {
     public int landLost(double height, double newHeight) {
         
         /* WRITE YOUR CODE BELOW */
-        return -1; // substitute this line. It is provided so that the code compiles.
+        return totalVisibleLand(height) - totalVisibleLand(newHeight); // difference between og and new height
     }
 
     /**
@@ -168,6 +195,38 @@ public class RisingTides {
     public int numOfIslands(double height) {
         
         /* WRITE YOUR CODE BELOW */
-        return -1; // substitute this line. It is provided so that the code compiles.
+        boolean[][] flooded = floodedRegionsIn(height); // get the flooded regions
+        WeightedQuickUnionUF w = new WeightedQuickUnionUF(flooded.length, flooded[0].length); // use weighted quick union class
+        int[][] offset = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}}; // 8 adjacent cells
+        for (int r = 0; r < flooded.length; r++) // iterate through rows
+        {
+            for (int c = 0; c < flooded[0].length; c++) // iterate through columns
+            {
+                if (!flooded[r][c]) // if non-flooded cell
+                {
+                    for (int o = 0; o < offset.length; o++) // check adjacent cells
+                    {
+                        int newRow = r+offset[o][0], newCol = c+offset[o][1];
+                        if (newRow < flooded.length && newRow >= 0 && newCol < flooded[0].length && newCol >= 0 && !flooded[newRow][newCol]) // if adjacent cell exists and is not flooded
+                        {
+                            w.union(new GridLocation(r, c), new GridLocation(newRow, newCol)); // join the cells (create island)
+                        }
+                    }
+                }
+            }
+        }
+        int sum = 0; // counts how many islands
+        for (int r = 0; r < flooded.length; r++) // iterate through rows
+        {
+            for (int c = 0; c < flooded[0].length; c++) // iterate through columns
+            {
+                if (!flooded[r][c] && (w.find(new GridLocation(r, c))).equals(new GridLocation(r, c))) // not flooded and parent returns itself as a representative, indicative of a unique set (island)
+                {
+                    sum++; // count as an island
+                }
+            }
+        }
+
+        return sum; // return number of islands
     }
 }

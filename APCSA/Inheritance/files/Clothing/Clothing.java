@@ -8,7 +8,7 @@ class Clothing
 	public Clothing(String size, String color)
 	{
 		this.size = size;
-    this.color = color;
+    	this.color = color;
 	}
 	public String getSize()
   {
